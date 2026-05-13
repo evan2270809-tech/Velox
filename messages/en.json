@@ -1,0 +1,227 @@
+{
+  "nav": {
+    "services": "Services",
+    "why": "Why us",
+    "process": "Process",
+    "contact": "Contact",
+    "portfolio": "Portfolio",
+    "team": "Team",
+    "about": "About",
+    "login": "Log in",
+    "cta": "Talk to us"
+  },
+  "manifesto": {
+    "eyebrow": "Our position",
+    "line": "We don't <em>pitch</em>. We <em>ship</em> the system, then sit with the people who run it."
+  },
+  "hero": {
+    "headline": "We <accent>embed</accent> AI into the way your team already works.",
+    "sub": "AX consulting for small and mid-sized teams. Built and operated, not pitched.",
+    "ctaPrimary": "Talk to us"
+  },
+  "trust": {
+    "eyebrow": "Teams that already shipped with us",
+    "logos": ["Lumen Group", "Northwind", "Atlas Foods", "Helix HR", "Riverbend Logistics", "Coast Capital", "Pinegrove Tech", "Solace Care"]
+  },
+  "why": {
+    "eyebrow": "Why Velox",
+    "title": "We leave behind <em>systems</em>, not slide decks.",
+    "items": [
+      {
+        "title": "Ships, not pitches",
+        "body": "Working workflows in your stack, not a demo on someone's laptop."
+      },
+      {
+        "title": "Cost model first",
+        "body": "We agree on the savings target before any code is written."
+      },
+      {
+        "title": "Embedded with your team",
+        "body": "We sit with your operators while we build. No vendor handoff theatre."
+      }
+    ]
+  },
+  "metrics": {
+    "eyebrow": "Outcomes",
+    "title": "Change you can put on the P&L",
+    "lede": "Average results across 12+ AX projects.",
+    "items": [
+      { "value": "47%", "label": "Avg LLM cost cut" },
+      { "value": "6 weeks", "label": "to first live workflow" },
+      { "value": "12+", "label": "AX projects shipped" },
+      { "value": "98%", "label": "Client renewal rate" }
+    ]
+  },
+  "services": {
+    "eyebrow": "What we do",
+    "title": "Three levers for <em>cost down</em> and <em>speed up</em>.",
+    "lede": "Strategy, build, and operations — one team owns the outcome.",
+    "items": [
+      {
+        "title": "Automation pipelines",
+        "description": "Replace repetitive work with end-to-end workflows. Sales, ops, CS, and reporting move on their own.",
+        "bullets": ["End-to-end workflows", "ERP, CRM, messaging integrations", "Alerts and self-healing"]
+      },
+      {
+        "title": "AI cost reduction",
+        "description": "Prompt caching, model routing, batched calls — we cut LLM spend by 30–60%.",
+        "bullets": ["Model and routing strategy", "Prompt cache design", "Monthly cost monitoring"]
+      },
+      {
+        "title": "AX adoption strategy",
+        "description": "Where to automate, what stays human — a six-week roadmap your team can ship.",
+        "bullets": ["AS-IS diagnostic", "ROI prioritization", "Internal enablement"]
+      }
+    ]
+  },
+  "compare": {
+    "eyebrow": "How we work",
+    "title": "We're not the <em>consultancy</em> you're used to.",
+    "lede": "What changes when you bring in Velox instead of a typical AI vendor.",
+    "beforeLabel": "Typical consulting",
+    "afterLabel": "Velox",
+    "pairs": [
+      {
+        "before": "Ships a deck and a roadmap, then leaves.",
+        "after": "Ships the running system, then transfers it to your team."
+      },
+      {
+        "before": "AI PoCs sit in a sandbox.",
+        "after": "First workflow runs inside your production stack."
+      },
+      {
+        "before": "Months of analysis before any code.",
+        "after": "Two-week audit. Build starts in week three."
+      },
+      {
+        "before": "LLM bills no one can explain.",
+        "after": "Monthly cost dashboard and routing rules you own."
+      },
+      {
+        "before": "A roadmap to put on a shelf.",
+        "after": "A roadmap you keep updating as you ship."
+      }
+    ]
+  },
+  "process": {
+    "eyebrow": "Process",
+    "title": "Eight weeks. <em>Four stages</em>.",
+    "lede": "We swap heavy consulting for shipped outcomes.",
+    "stages": [
+      { "title": "Audit", "weeks": "Week 1–2", "body": "We map your current workflows and AI usage in two weeks." },
+      { "title": "Blueprint", "weeks": "Week 3–4", "body": "We design an automation blueprint, prioritized by cost and impact." },
+      { "title": "Build", "weeks": "Week 5–8", "body": "We build the pipelines and ship the first live workflow in 4–8 weeks." },
+      { "title": "Operate", "weeks": "Ongoing", "body": "We measure outcomes and keep driving costs down." }
+    ]
+  },
+  "portfolio": {
+    "eyebrow": "Portfolio",
+    "title": "Real changes, visible on the P&L",
+    "lede": "A snapshot of recent engagements.",
+    "viewAll": "See all cases"
+  },
+  "testimonials": {
+    "eyebrow": "Testimonials",
+    "title": "What teams say after going live",
+    "lede": "The result shows up in daily operations, not in slide decks.",
+    "items": [
+      {
+        "quote": "We recovered 720 hours per month within eight weeks of going live. The work disappeared, not the people.",
+        "author": "Jihun Park",
+        "role": "Director of Operations",
+        "company": "Northwind Manufacturing"
+      },
+      {
+        "quote": "Velox didn't feel like a consultant who came and went. They felt like teammates who happened to leave.",
+        "author": "Sujung Lee",
+        "role": "Product Lead",
+        "company": "Coast Capital"
+      },
+      {
+        "quote": "Our monthly LLM bill is half what it was, and now it's predictable enough that we plan around it.",
+        "author": "Minho Jung",
+        "role": "CTO",
+        "company": "Helix HR"
+      }
+    ]
+  },
+  "methodology": {
+    "eyebrow": "How we operate",
+    "title": "Three principles we hold under pressure.",
+    "lede": "What stays true regardless of stack, sector, or team size.",
+    "items": [
+      {
+        "tag": "Note 01",
+        "title": "Audit before architecture",
+        "body": "Two weeks of operator interviews and workflow tracing precede any tooling decision. We start from where the work actually breaks, not from what's fashionable."
+      },
+      {
+        "tag": "Note 02",
+        "title": "Cost target signed first",
+        "body": "Before code, we agree on the dollar number that justifies the engagement. Every routing rule and model choice ties back to that target — and it's visible on a dashboard you own."
+      },
+      {
+        "tag": "Note 03",
+        "title": "Handoff that survives us",
+        "body": "Documented runbooks, named owners on your side, and a 30-day shadowing window. The system stays useful when the consultant is gone — that's the only handoff that counts."
+      }
+    ]
+  },
+  "team": {
+    "eyebrow": "Team",
+    "title": "The people who make AX real",
+    "lede": "Strategy, BD, and engineering in one room.",
+    "roles": {
+      "ceo": "CEO / Product Manager",
+      "devLead": "Development Lead",
+      "bdLead": "BD Lead",
+      "dev": "Engineer",
+      "bd": "Business Development"
+    }
+  },
+  "about": {
+    "eyebrow": "About",
+    "title": "We don't ship demos. We ship P&L changes.",
+    "body": "Velox BD exists for the hardest part of AI adoption — making it real in day-to-day work. We don't ship demos; we ship changes you can see on next quarter's P&L.",
+    "quote": "We recovered 720 hours per month within eight weeks of going live. The work disappeared, not the people.",
+    "quoteAuthor": "Velox BD client, Northwind Manufacturing"
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "What teams <em>ask</em> before signing.",
+    "items": [
+      {
+        "q": "What's the minimum project size?",
+        "a": "We start at a single 8-week workflow (~$25k+). A separate 2-week audit is available as a standalone."
+      },
+      {
+        "q": "Can we adopt this without an internal engineering team?",
+        "a": "Yes. We interview your operators, define requirements, and build and operate the system ourselves. Handoff includes operating documentation."
+      },
+      {
+        "q": "Which LLMs do you use? We're worried about lock-in.",
+        "a": "We mix Anthropic, OpenAI, and open-source models per case. Prompts and data are designed to remain portable across providers."
+      },
+      {
+        "q": "How do you handle security and data?",
+        "a": "We default to running inside your AWS/GCP environment, sign NDA/DPA, and never use your data for model training."
+      },
+      {
+        "q": "Do we keep working with you after launch?",
+        "a": "We continue under a monthly retainer during the Operate stage. You can end it any time once you can run it yourselves."
+      }
+    ]
+  },
+  "finalCta": {
+    "title": "Let's talk.",
+    "lede": "Tell us about your operations. We'll see if there's a fit — no pitch, no pressure.",
+    "ctaPrimary": "Email us"
+  },
+  "footer": {
+    "tagline": "AX isn't a slogan. It's a change in operations.",
+    "rights": "© 2026 Velox BD. All rights reserved.",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "contact": "Contact"
+  }
+}

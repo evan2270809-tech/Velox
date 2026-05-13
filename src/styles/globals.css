@@ -1,0 +1,324 @@
+@import "tailwindcss";
+
+/* === Korean fonts ============================================
+ * Pretendard Variable — body/UI for KR (matches Latin metrics well)
+ * Noto Serif KR — display headings for KR (paired with Source Serif 4 for EN)
+ * Loaded as CSS fallbacks so the browser substitutes per glyph. */
+@font-face {
+  font-family: "Pretendard Variable";
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+  src: url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/woff2/PretendardVariable.woff2")
+    format("woff2-variations");
+}
+@theme {
+  /* === Light editorial palette (single accent: brand orange) === */
+
+  /* Surfaces — inverted to warm light */
+  --color-abyss: #fbfaf7;       /* page canvas, warm white */
+  --color-cream: #f0ede6;       /* deeper warm cream for section rhythm */
+  --color-surface: #ffffff;     /* card/section surface (cards on cream) */
+  --color-interactive: #f4f1ec; /* muted interactive bg */
+  --color-graphite: #f4f1ec;    /* warm muted (Before card) */
+  --color-deep-ink: #0f0f12;    /* dark inversion block (FinalCTA, Footer) */
+  --color-deep-anchor: #1a1a1f; /* mid-page dark anchor (Comparison) */
+
+  /* Ink */
+  --color-starlight: #0f0f12;   /* primary ink (zinc-950) */
+  --color-silver: #52525b;      /* secondary ink */
+  --color-lead: #d4d1cb;        /* hairline border / tertiary */
+  --color-lead-soft: rgba(82, 82, 91, 0.4);
+  --color-pure-white: #ffffff;
+
+  /* Single accent — brand orange */
+  --color-accent: #f2a03a;
+  --color-accent-hover: #f7b15a;
+  --color-accent-press: #d97706;            /* tighter on light bg for AA */
+  --color-accent-soft: rgba(242, 160, 58, 0.12);
+  --color-accent-glow: rgba(242, 160, 58, 0.24);
+  --color-divider: rgba(15, 15, 18, 0.06);  /* universal hairline */
+
+  /* Aliases (legacy variable names → Mercury equivalents so existing components keep working) */
+  --color-brand-orange: var(--color-accent);
+  --color-brand-orange-hover: var(--color-accent-hover);
+  --color-brand-orange-press: var(--color-accent-press);
+  --color-brand-orange-soft: var(--color-accent-soft);
+
+  --color-bg-canvas: var(--color-surface);
+  --color-bg-card: var(--color-graphite);
+  --color-bg-subtle: var(--color-abyss);
+  --color-pure-surface: var(--color-graphite);
+  --color-ghost-canvas: var(--color-surface);
+
+  --color-ink-primary: var(--color-starlight);
+  --color-ink-1: var(--color-starlight);
+  --color-ink-2: var(--color-silver);
+  --color-ink-3: var(--color-silver);
+  --color-ink-4: var(--color-lead);
+  --color-storm-gray: var(--color-silver);
+  --color-slate-ink: var(--color-silver);
+  --color-ash-medium: var(--color-lead);
+  --color-fog-border: var(--color-lead);
+  --color-midnight-navy: var(--color-starlight);
+  --color-deep-cosmos: var(--color-abyss);
+  --color-navy-deep: var(--color-abyss);
+
+  --color-ink-on-dark-1: #ffffff;
+  --color-ink-on-dark-2: rgba(255, 255, 255, 0.78);
+  --color-ink-on-dark-3: rgba(255, 255, 255, 0.58);
+
+  --color-ring-1: rgba(15, 15, 18, 0.08);
+  --color-ring-2: rgba(15, 15, 18, 0.16);
+  --color-ring-on-dark: rgba(255, 255, 255, 0.18);
+
+  /* === Type === */
+  --font-sans: var(--font-inter), "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Segoe UI", Roboto, ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-source-serif), var(--font-noto-serif-kr), "Noto Serif KR", "Pretendard Variable", "Apple SD Gothic Neo", ui-serif, Georgia, "Times New Roman", serif;
+
+  /* Mercury type scale */
+  --text-caption: 12px;
+  --leading-caption: 1.5;
+  --tracking-caption: 0.24px;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.5;
+  --tracking-body-sm: 0.28px;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --tracking-body: 0.16px;
+  --text-body-lg: 18px;
+  --text-subheading: 18px;
+  --leading-subheading: 1.4;
+  --text-heading-sm: 21px;
+  --leading-heading-sm: 1.35;
+  --text-heading: 32px;
+  --leading-heading: 1.2;
+  --text-heading-lg: 49px;
+  --leading-heading-lg: 1.15;
+  --text-display: 65px;
+  --leading-display: 1.1;
+  --tracking-display: 0.65px;
+
+  /* Aliased for existing components */
+  --text-h1: clamp(40px, 7.5vw, 80px);
+  --text-h2: clamp(32px, 4.5vw, 49px);
+
+  /* === Spacing === */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-56: 56px;
+  --spacing-72: 72px;
+  --spacing-80: 80px;
+  --spacing-112: 112px;
+  --spacing-128: 128px;
+
+  /* === Radii — Mercury: pills for buttons, sharp for cards === */
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-card: 4px;            /* Mercury: nearly sharp cards */
+  --radius-cards: 0px;
+  --radius-pill: 9999px;
+  --radius-pill-large: 60px;
+  --radius-3xl: 32px;
+  --radius-3xl-2: 40px;
+  --radius-buttons: 32px;
+  --radius-inputs: 32px;
+
+  /* === Shadows — restrained for light bg === */
+  --shadow-md: none;
+  --shadow-subtle: none;
+  --shadow-xl: none;
+  --shadow-card-rest: 0 0 0 1px rgba(15, 15, 18, 0.08);
+  --shadow-card-hover:
+    0 0 0 1px rgba(15, 15, 18, 0.10),
+    0 12px 40px -16px rgba(15, 15, 18, 0.10);
+  --shadow-cta:
+    0 1px 0 rgba(255, 255, 255, 0.40) inset,
+    0 6px 18px -8px rgba(242, 160, 58, 0.30);
+  --shadow-cta-hover:
+    0 1px 0 rgba(255, 255, 255, 0.50) inset,
+    0 10px 24px -10px rgba(242, 160, 58, 0.40);
+  --shadow-ghost-dark: inset 0 0 0 1px rgba(255, 255, 255, 0.16);
+  --shadow-ring: 0 0 0 1px rgba(15, 15, 18, 0.08);
+  --shadow-ring-strong: 0 0 0 1px rgba(15, 15, 18, 0.16);
+
+  /* === Hero gradient — soft light atmosphere === */
+  --gradient-hero:
+    radial-gradient(60% 50% at 100% 0%, rgba(242, 160, 58, 0.10) 0%, transparent 55%),
+    radial-gradient(50% 40% at 0% 100%, rgba(212, 165, 116, 0.08) 0%, transparent 60%),
+    linear-gradient(180deg, #fbfaf7 0%, #ffffff 100%);
+  --gradient-noise: radial-gradient(1200px 600px at 50% -20%, rgba(15, 15, 18, 0.02), transparent 60%);
+  --gradient-orange-glow: radial-gradient(60% 50% at 50% 100%, rgba(242, 160, 58, 0.10) 0%, rgba(242, 160, 58, 0.04) 35%, transparent 70%);
+
+  /* === Motion === */
+  --duration-spring: 700ms;
+  --duration-fast: 220ms;
+}
+
+/* Page defaults — light editorial mode */
+html,
+body {
+  background: var(--color-abyss);
+  color: var(--color-starlight);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 0.005em;
+}
+html { color-scheme: light; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+/* Display heading defaults — loose enough to breathe */
+h1, h2, h3, h4 {
+  /* Keep Korean syllables intact; break only at word boundaries */
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  /* Modern browsers: balance heading line lengths automatically */
+  text-wrap: balance;
+}
+h2 { line-height: 1.12; letter-spacing: -0.02em; }
+h3 { line-height: 1.25; }
+p  { line-height: 1.7; word-break: keep-all; overflow-wrap: break-word; }
+:lang(ko) { letter-spacing: 0; }
+
+/* Form fields */
+input,
+textarea,
+select {
+  border-radius: var(--radius-md);
+  background: transparent;
+  border: 1px solid var(--color-lead);
+  color: var(--color-starlight);
+  padding: 0.875rem 1rem;
+  font: inherit;
+  letter-spacing: inherit;
+  transition: border-color var(--duration-fast), box-shadow var(--duration-fast);
+}
+input::placeholder,
+textarea::placeholder { color: var(--color-silver); opacity: 0.7; }
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(242, 160, 58, 0.14);
+}
+
+/* Display utility — Source Serif 4 for editorial headlines */
+.font-display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.font-light-headline { font-weight: 360; letter-spacing: 0.005em; }
+
+/* Numeric — Inter, tabular figures, bold for KPI weight */
+.font-numeric {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums lining-nums;
+  font-feature-settings: "tnum" on, "lnum" on;
+}
+
+/* Editorial caps label — Inter, generous letter-spacing, accent color */
+.label-caps {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent-press);
+}
+
+/* Back-compat alias — old usages of font-mono-tight resolve to label-caps style */
+.font-mono-tight {
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.12em;
+}
+
+.font-mono-tight {
+  font-family: ui-monospace, SFMono-Regular, "JetBrains Mono", Menlo, monospace;
+  letter-spacing: -0.01em;
+}
+
+/* Pipeline animations */
+@keyframes fp-flow { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -28; } }
+@keyframes fp-pulse {
+  0%   { transform: scale(0.85); opacity: 0.55; }
+  100% { transform: scale(1.18); opacity: 1; }
+}
+@keyframes fp-glow {
+  0%   { filter: drop-shadow(0 0 0 rgba(242, 160, 58, 0)); }
+  100% { filter: drop-shadow(0 0 18px rgba(242, 160, 58, 0.85)); }
+}
+.fp-path  { animation: fp-flow 1.6s linear infinite; }
+.fp-pulse { transform-origin: center; animation: fp-pulse 1.4s ease-in-out infinite alternate; }
+.fp-ai    { animation: fp-glow 2.2s ease-in-out infinite alternate; }
+
+@keyframes float-y { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+.float-y { animation: float-y 6s ease-in-out infinite; }
+
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.marquee-track { animation: marquee 80s linear infinite; }
+
+/* Process timeline progress bar — width transitions on scroll-in */
+@keyframes timeline-progress { from { width: 0%; } to { width: 100%; } }
+.timeline-progress-active { animation: timeline-progress 1.5s cubic-bezier(0.22, 1.05, 0.36, 1) forwards; }
+
+/* Hero flow-line — slow stroke offset for organic motion */
+@keyframes hero-flow { to { stroke-dashoffset: -640; } }
+.hero-flow-1 { animation: hero-flow 18s linear infinite; }
+.hero-flow-2 { animation: hero-flow 26s linear infinite; }
+.hero-flow-3 { animation: hero-flow 34s linear infinite; }
+
+/* Soft pulse for live indicator dot */
+@keyframes live-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%      { transform: scale(1.6); opacity: 0.4; }
+}
+.live-pulse { animation: live-pulse 1.8s ease-in-out infinite; }
+
+/* Proof ticker — slow, restrained */
+.proof-track { animation: marquee 60s linear infinite; }
+
+/* Entrance reveal — used by sections and hero */
+@keyframes spring-in {
+  0%   { opacity: 0; transform: translateY(14px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.animate-spring-in {
+  opacity: 0;
+  animation: spring-in 0.7s cubic-bezier(0.22, 1.05, 0.36, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fp-path, .fp-pulse, .fp-ai, .float-y, .marquee-track, .proof-track,
+  .timeline-progress-active, .hero-flow-1, .hero-flow-2, .hero-flow-3, .live-pulse {
+    animation: none !important;
+  }
+  .timeline-progress-active { width: 100% !important; }
+}
+
+::selection {
+  background: rgba(242, 160, 58, 0.20);
+  color: var(--color-starlight);
+}
+
+@media (pointer: fine) {
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(15, 15, 18, 0.20); border-radius: 9999px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(15, 15, 18, 0.32); }
+}
+
+body { overflow-x: hidden; }
