@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion, type Variants } from "framer-motion";
+import type * as React from "react";
 import type { ComponentProps, ReactNode } from "react";
 
 type AsTag = "div" | "li" | "section" | "article" | "header" | "ul" | "ol" | "span";
@@ -42,9 +43,8 @@ export function Reveal({
   const MotionTag = motion[as] as typeof motion.div;
 
   if (reduceMotion) {
-    const StaticTag = as as keyof JSX.IntrinsicElements;
+    const StaticTag = as as keyof React.JSX.IntrinsicElements;
     // Render plain element so reduced-motion users still see content
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return (
       // @ts-expect-error dynamic tag
       <StaticTag className={className} style={style}>
@@ -93,9 +93,8 @@ export function RevealStagger({
   };
 
   if (reduceMotion) {
-    const StaticTag = as as keyof JSX.IntrinsicElements;
+    const StaticTag = as as keyof React.JSX.IntrinsicElements;
     return (
-      // @ts-expect-error dynamic tag
       <StaticTag className={className}>{children}</StaticTag>
     );
   }

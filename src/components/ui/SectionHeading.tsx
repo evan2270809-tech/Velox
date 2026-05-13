@@ -82,9 +82,11 @@ export function emRenderer(tone: "light" | "dark" = "light") {
     tone === "dark"
       ? "text-[var(--color-accent)]"
       : "text-[var(--color-accent-press)]";
-  return (chunks: ReactNode) => (
+  const EmRender = (chunks: ReactNode) => (
     <span className={color} style={{ fontStyle: "normal" }}>
       {chunks}
     </span>
   );
+  EmRender.displayName = "EmRender";
+  return EmRender;
 }
