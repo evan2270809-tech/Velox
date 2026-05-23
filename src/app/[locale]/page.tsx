@@ -7,15 +7,14 @@ import { Services } from "@/components/sections/Services";
 import { CapabilityStack } from "@/components/sections/CapabilityStack";
 import { Process } from "@/components/sections/Process";
 import { Comparison } from "@/components/sections/Comparison";
-import { Team } from "@/components/sections/Team";
 import { Methodology } from "@/components/sections/Methodology";
 import { FAQ } from "@/components/sections/FAQ";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 
 // Retired sections (2026-05): TrustBar (fake client names), Metrics (aggregate numbers
 // inconsistent with EST. 2026), Portfolio (fake case studies with over-specific KPIs),
-// Testimonials, About. Source files kept under src/components/sections/ for future
-// re-enable when real client data exists.
+// Testimonials, About, Team (placeholder TBA members not useful for visitors).
+// Source files kept under src/components/sections/ for future re-enable when real data exists.
 
 export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -31,7 +30,6 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         <Services />
         <Process />
         <Comparison />
-        <Team />
         <Methodology />
         <FAQ />
         <FinalCTA />

@@ -21,7 +21,6 @@ export function Nav() {
   const links = [
     { href: "#services", label: t("services") },
     { href: "#process", label: t("process") },
-    { href: "#team", label: t("team") },
     { href: "#cta", label: t("contact") },
   ];
 
