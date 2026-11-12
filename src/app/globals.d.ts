@@ -1,4 +1,4 @@
-import type messages from "../../messages/ko.json";
+import type messages from "../../messages/en.json";
 
 type Messages = typeof messages;
 
