@@ -1,104 +1,136 @@
-import type { CSSProperties } from "react";
-import { getImageProps } from "next/image";
-import { ArrowDown, ArrowRight } from "lucide-react";
-import { useTranslations } from "next-intl";
-import { ButtonLink } from "@/components/ui/ButtonLink";
-import { ConceptLabel } from "@/components/ui/ConceptLabel";
-import { container } from "@/components/ui/SectionHeader";
-import { mailtoHref, sectionImages } from "@/content/site";
-import { cn } from "@/lib/cn";
+"use client";
 
-const delay = (ms: number) => ({ "--rise-delay": `${ms}ms` }) as CSSProperties;
+import { ArrowRight } from "lucide-react";
+import { useTranslations } from "next-intl";
+import Image from "next/image";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { HeroCanvas } from "@/components/visuals/HeroCanvas";
+
+const EMAIL = "contact@veloxbd.com";
 
 export function Hero() {
   const t = useTranslations("hero");
+  const ref = useRef<HTMLDivElement | null>(null);
 
-  // Art direction: phones get a portrait crop of the glove, desktops the wide frame.
-  const desktop = getImageProps({
-    src: sectionImages.heroDesktop,
-    alt: "",
-    fill: true,
-    sizes: "100vw",
-  });
-  const mobile = getImageProps({
-    src: sectionImages.heroMobile,
-    alt: "",
-    fill: true,
-    sizes: "100vw",
-    priority: true,
-  });
+  const { scrollY } = useScroll();
+  const groupOpacity = useTransform(scrollY, [0, 480], [1, 0.15]);
+  const groupY = useTransform(scrollY, [0, 480], [0, -50]);
+  const bgScale = useTransform(scrollY, [0, 600], [1, 1.08]);
+  const bgY = useTransform(scrollY, [0, 600], [0, 60]);
 
   return (
-    <section className="relative isolate overflow-hidden bg-midnight-900 [--hero-image:min(118vw,56svh)] lg:flex lg:min-h-[min(100svh,920px)] lg:items-center">
-      {/* Mobile: the image sits below the header and the text follows it.
-          Desktop: a 16:9 frame as wide as the viewport, nudged right so the glove
-          stays clear of the text column, centred vertically when it is shorter
-          than the section and pinned under the header when it is taller. */}
-      <div className="absolute inset-x-0 top-16 -z-10 h-[var(--hero-image)] lg:left-auto lg:right-[-6%] lg:top-[max(3.5rem,calc(50%-28.3vw))] lg:aspect-[1920/1086] lg:h-auto lg:w-full">
-        <picture>
-          <source
-            media="(min-width: 1024px)"
-            srcSet={desktop.props.srcSet}
-            sizes={desktop.props.sizes}
-          />
-          {/* eslint-disable-next-line @next/next/no-img-element -- <picture> needs a plain <img>; srcset comes from next/image */}
-          <img {...mobile.props} alt="" className="object-cover object-top" />
-        </picture>
-        <div
-          aria-hidden
-          className="absolute inset-0 bg-[linear-gradient(180deg,var(--color-midnight-900)_0%,transparent_14%,transparent_50%,var(--color-midnight-900)_100%)] lg:bg-[linear-gradient(90deg,var(--color-midnight-900)_0%,rgb(18_15_42/0.85)_28%,rgb(18_15_42/0.35)_46%,transparent_60%),linear-gradient(180deg,var(--color-midnight-900)_0%,transparent_12%,transparent_72%,var(--color-midnight-900)_100%)]"
+    <section
+      className="relative isolate flex min-h-[92vh] items-center overflow-hidden bg-[#0a0a0e]"
+    >
+      {/* Full-bleed hero-ai painterly background, slowly parallaxing */}
+      <motion.div
+        aria-hidden
+        style={{ scale: bgScale, y: bgY }}
+        className="pointer-events-none absolute inset-0 -z-30"
+      >
+        <Image
+          src="/brand/hero-ai.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover opacity-90"
         />
-      </div>
-      <ConceptLabel className="absolute right-4 top-20 lg:bottom-8 lg:right-10 lg:top-auto" />
+      </motion.div>
 
-      {/* Blend into the next section */}
+      {/* Live canvas particle network overlaid for motion + mouse reactivity */}
+      <div className="pointer-events-auto absolute inset-0 -z-20 mix-blend-screen">
+        <HeroCanvas />
+      </div>
+
+      {/* Darkening + vignette gradient so text is always legible */}
       <div
         aria-hidden
-        className="absolute inset-x-0 bottom-0 -z-10 h-28 bg-gradient-to-b from-transparent to-midnight-800 lg:h-44"
+        className="pointer-events-none absolute inset-0 -z-10"
+        style={{
+          background:
+            "radial-gradient(80% 70% at 30% 50%, rgba(10,10,14,0.55) 0%, rgba(10,10,14,0.78) 60%, rgba(10,10,14,0.92) 100%)",
+        }}
+      />
+      {/* Soft bottom fade into next section */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-40"
+        style={{
+          background:
+            "linear-gradient(to bottom, transparent 0%, rgba(15,15,18,0.0) 30%, var(--color-abyss) 100%)",
+        }}
       />
 
       <div
-        className={cn(
-          container,
-          "relative pb-16 pt-[calc(4rem+var(--hero-image)-4.5rem)] lg:pb-28 lg:pt-36",
-        )}
+        ref={ref}
+        className="relative mx-auto flex w-full max-w-[1440px] flex-col items-start gap-7 px-6 py-32 sm:px-10 lg:px-14 lg:py-40"
       >
-        <div className="max-w-[640px]">
-          <p
-            className="rise inline-flex items-center gap-2.5 rounded-full border border-cream-100/15 bg-midnight-800/70 px-3.5 py-1.5 text-[13px] font-medium text-cream-100/90 backdrop-blur"
-            style={delay(0)}
+        <motion.div
+          style={{ opacity: groupOpacity, y: groupY }}
+          className="flex max-w-[800px] flex-col items-start gap-7"
+        >
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, ease: [0.22, 1.05, 0.36, 1] }}
           >
-            <span aria-hidden className="size-1.5 rounded-full bg-cream-100" />
-            {t("chip")}
-          </p>
+            <Image
+              src="/brand/velox-wordmark.png"
+              alt="Velox BD"
+              width={539}
+              height={140}
+              priority
+              className="h-16 w-auto md:h-20 lg:h-24"
+            />
+          </motion.div>
 
-          <h1
-            className="display rise mt-6 text-[clamp(2.1rem,9vw,3.1rem)] sm:text-[3.5rem] lg:text-[clamp(3.25rem,5vw,4.5rem)]"
-            style={delay(80)}
+          <motion.h1
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1.05, 0.36, 1] }}
+            className="font-display max-w-[14em] text-[clamp(34px,5.2vw,68px)] leading-[1.08] tracking-[-0.022em] text-white"
+            style={{
+              fontWeight: 700,
+              wordBreak: "keep-all",
+              textWrap: "balance",
+              textShadow: "0 2px 30px rgba(0,0,0,0.45)",
+            }}
           >
             {t.rich("headline", {
-              accent: (chunks) => <span className="block text-velox-orange">{chunks}</span>,
+              accent: (chunks) => (
+                <span className="text-[var(--color-accent)]">{chunks}</span>
+              ),
+              br: () => <br />,
             })}
-          </h1>
+          </motion.h1>
 
-          <p
-            className="rise mt-6 max-w-[34rem] text-[17px] leading-[1.65] text-cream-100/80 lg:max-w-[30rem] lg:text-[19px]"
-            style={delay(180)}
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1.05, 0.36, 1] }}
+            className="max-w-[58ch] text-[17px] md:text-[18px]"
+            style={{
+              color: "rgba(255,255,255,0.78)",
+              lineHeight: 1.7,
+              wordBreak: "keep-all",
+            }}
           >
             {t("sub")}
-          </p>
+          </motion.p>
 
-          <div className="rise mt-9 flex flex-col gap-3 sm:flex-row" style={delay(280)}>
-            <ButtonLink href={mailtoHref} size="lg">
-              {t("ctaPrimary")}
-              <ArrowRight aria-hidden className="size-[18px]" strokeWidth={2.4} />
-            </ButtonLink>
-            <ButtonLink href="#building" variant="secondary" size="lg">
-              {t("ctaSecondary")}
-              <ArrowDown aria-hidden className="size-[18px]" strokeWidth={2.2} />
-            </ButtonLink>
-          </div>
-        </div>
+          <motion.a
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.45, ease: [0.22, 1.05, 0.36, 1] }}
+            href={`mailto:${EMAIL}?subject=Velox%20BD%20-%20Chat`}
+            className="group inline-flex h-14 items-center justify-center gap-3 rounded-[10px] bg-[var(--color-accent)] px-10 text-[16px] font-semibold text-[#1a1a1f] shadow-[0_10px_30px_-10px_rgba(242,160,58,0.55)] transition-all hover:bg-[var(--color-accent-hover)] hover:shadow-[0_14px_40px_-10px_rgba(242,160,58,0.7)]"
+          >
+            {t("ctaPrimary")}
+            <ArrowRight className="size-[22px] transition-transform group-hover:translate-x-1" strokeWidth={2.4} />
+          </motion.a>
+        </motion.div>
       </div>
     </section>
   );

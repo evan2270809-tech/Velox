@@ -7,9 +7,3 @@ out
 next-env.d.ts
 .DS_Store
 .vercel
-
-# local tool settings
-.claude/
-
-# review captures and notes (not part of the site)
-_검수자료/

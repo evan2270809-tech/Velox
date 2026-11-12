@@ -1,65 +1,43 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Sans } from "next/font/google";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { getTranslations, setRequestLocale } from "next-intl/server";
-import { getSiteUrl, ogLocales, shareImages, site, type Locale } from "@/content/site";
-import { getPathname } from "@/i18n/navigation";
+import { Inter, Source_Serif_4, Noto_Serif_KR } from "next/font/google";
 import { routing } from "@/i18n/routing";
 import "@/styles/globals.css";
 
-// Latin text. Hangul falls through to Pretendard (see globals.css).
-const dmSans = DM_Sans({
+const inter = Inter({
   subsets: ["latin"],
-  axes: ["opsz"],
-  variable: "--font-dm-sans",
+  variable: "--font-inter",
   display: "swap",
 });
 
-function isLocale(value: string): value is Locale {
-  return (routing.locales as readonly string[]).includes(value);
-}
+const sourceSerif = Source_Serif_4({
+  subsets: ["latin"],
+  variable: "--font-source-serif",
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}): Promise<Metadata> {
-  const { locale: requested } = await params;
-  const locale = isLocale(requested) ? requested : routing.defaultLocale;
-  const t = await getTranslations({ locale, namespace: "meta" });
+const notoSerifKR = Noto_Serif_KR({
+  weight: ["500", "600", "700"],
+  variable: "--font-noto-serif-kr",
+  display: "swap",
+  preload: false,
+});
 
-  const title = t("title");
-  const description = t("description");
-  const path = getPathname({ href: "/", locale });
-  const image = { url: shareImages[locale], width: 1200, height: 630, alt: title };
-
-  return {
-    metadataBase: new URL(getSiteUrl()),
-    title,
-    description,
-    applicationName: site.name,
-    alternates: { canonical: path },
-    openGraph: {
-      type: "website",
-      siteName: site.name,
-      title,
-      description,
-      url: path,
-      locale: ogLocales[locale],
-      images: [image],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [image],
-    },
-  };
-}
+export const metadata: Metadata = {
+  title: {
+    default: "Velox BD — AX consulting for SMBs",
+    template: "%s · Velox BD",
+  },
+  description:
+    "Velox BD embeds automation and AI into the way small and mid-sized teams already work — half the cost, twice the speed.",
+  metadataBase: new URL("https://veloxbd.example"),
+};
 
 export const viewport: Viewport = {
-  themeColor: "#120f2a",
-  colorScheme: "dark",
+  themeColor: "#fbfaf7",
 };
 
 export function generateStaticParams() {
@@ -74,14 +52,20 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  if (!isLocale(locale)) {
+  if (!routing.locales.includes(locale as (typeof routing.locales)[number])) {
     notFound();
   }
   setRequestLocale(locale);
+  const messages = await getMessages();
 
   return (
-    <html lang={locale} className={dmSans.variable}>
-      <body className="font-sans antialiased">{children}</body>
+    <html
+      lang={locale}
+      className={`${inter.variable} ${sourceSerif.variable} ${notoSerifKR.variable}`}
+    >
+      <body className="font-sans antialiased">
+        <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
+      </body>
     </html>
   );
 }
