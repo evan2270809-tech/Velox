@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Sans } from "next/font/google";
+import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { getSiteUrl, ogLocales, shareImages, site, type Locale } from "@/content/site";
@@ -7,11 +7,19 @@ import { getPathname } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 import "@/styles/globals.css";
 
-// Latin text. Hangul falls through to Pretendard (see globals.css).
-const dmSans = DM_Sans({
+// Latin text: IBM Plex Sans, an engineering face that fits a sensor company.
+// Hangul falls through to Pretendard (see globals.css).
+const plexSans = IBM_Plex_Sans({
   subsets: ["latin"],
-  axes: ["opsz"],
-  variable: "--font-dm-sans",
+  variable: "--font-plex-sans",
+  display: "swap",
+});
+
+// Readouts (dates, statuses, episode data), in the style of the Collector UI.
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-plex-mono",
   display: "swap",
 });
 
@@ -58,8 +66,8 @@ export async function generateMetadata({
 }
 
 export const viewport: Viewport = {
-  themeColor: "#120f2a",
-  colorScheme: "dark",
+  themeColor: "#f7f6f2",
+  colorScheme: "light",
 };
 
 export function generateStaticParams() {
@@ -80,7 +88,7 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
 
   return (
-    <html lang={locale} className={dmSans.variable}>
+    <html lang={locale} className={`${plexSans.variable} ${plexMono.variable}`}>
       <body className="font-sans antialiased">{children}</body>
     </html>
   );

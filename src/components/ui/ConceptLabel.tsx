@@ -11,8 +11,8 @@ export function ConceptLabel({ className }: { className?: string }) {
     <span
       aria-hidden
       className={cn(
-        "pointer-events-none select-none rounded-full bg-midnight-900/60 px-2.5 py-1",
-        "text-[11px] font-medium leading-none tracking-[0.03em] text-lavender-300 backdrop-blur-sm",
+        "pointer-events-none select-none rounded bg-midnight-900/70 px-2 py-1",
+        "font-mono text-[11px] leading-none text-[#d9d4c9]",
         className,
       )}
     >

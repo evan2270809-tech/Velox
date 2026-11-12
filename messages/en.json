@@ -24,7 +24,11 @@
     "headline": "High-quality data <accent>for robot learning</accent>",
     "sub": "We're building a tactile glove and capture system that records how human hands press, grip and slip — together with video and hand motion.",
     "ctaPrimary": "Contact us",
-    "ctaSecondary": "See what we're building"
+    "ctaSecondary": "See what we're building",
+    "media": {
+      "caption": "Recorded episode replay",
+      "detail": "Gemini RGB, depth and infrared with the glove signal in raw mV. The USB view is a reference still."
+    }
   },
   "building": {
     "title": "What we're building",
@@ -36,10 +40,27 @@
       "collectionSoftware": {
         "title": "Collection software",
         "body": "Prototype 1 Collector checks devices, runs a capture and reviews each episode. It already replays our real recordings.",
-        "media": {
-          "caption": "Recorded episode replay",
-          "detail": "Gemini RGB, depth and infrared with the glove signal in raw mV. The USB view is a reference still.",
-          "play": "Play the recorded replay"
+        "readout": {
+          "episode": {
+            "label": "Episode",
+            "value": "20261108_231009_take_299286"
+          },
+          "excerpt": {
+            "label": "Excerpt",
+            "value": "8 s replay"
+          },
+          "camera": {
+            "label": "Gemini 2",
+            "value": "RGB · depth · infrared"
+          },
+          "glove": {
+            "label": "Glove",
+            "value": "5 channels · raw mV"
+          },
+          "usb": {
+            "label": "USB RGB",
+            "value": "Reference still"
+          }
         }
       },
       "captureSystem": {

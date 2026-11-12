@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* === Korean glyphs ============================================
- * Pretendard Variable covers Hangul. Latin text uses DM Sans, loaded with
+ * Pretendard Variable covers Hangul. Latin text uses IBM Plex Sans, loaded with
  * next/font in src/app/[locale]/layout.tsx. Both sit in one font stack, so the
  * browser picks per glyph.
  *
@@ -19,29 +19,37 @@
 }
 
 @theme {
-  /* === Brand tokens: Midnight + Orange ===
-   * Orange is an accent: an emphasised word, a key number, one button.
-   * Keep it to two places per screen. */
-  --color-midnight-900: #120f2a; /* page background */
-  --color-midnight-800: #1a1638; /* alternating sections, footer */
-  --color-midnight-700: #231e4d; /* cards, panels */
-  --color-midnight-600: #342d6b; /* borders, dividers */
-  --color-velox-orange: #ff9500; /* accent */
-  --color-cream-100: #f4eee3; /* body text */
-  --color-lavender-300: #a9a4c9; /* secondary text, sources */
-  --color-signal-cyan: #6fd3ff; /* data-flow lines in diagrams only */
+  /* === Brand tokens: light paper + midnight ink + orange ===
+   * The page is light. Midnight is the ink colour, orange the accent: one
+   * button, an emphasised word or number. Keep it to two places per screen. */
+  --color-paper: #f7f4ee; /* page background, lab-notebook paper */
+  --color-paper-2: #efe9df; /* soft fills: footer, contact panel, readouts */
+  --color-surface: #fdfbf7; /* cards */
+  --color-line: rgb(31 27 22 / 0.1); /* hairlines, card borders */
+  --color-line-strong: rgb(31 27 22 / 0.18);
+  --color-ink: #1f1b16; /* headings, body text */
+  --color-ink-2: #5e554a; /* secondary text */
+  --color-ink-3: #6c6357; /* captions, meta */
+  --color-velox-orange: #ff9500; /* button fill */
+  --color-accent-ink: #a65100; /* orange text on light backgrounds */
   --color-on-brand: #1a0e00; /* text on an orange button */
 
-  --font-sans: var(--font-dm-sans), "Pretendard Variable", Pretendard, -apple-system,
+  /* Dark tones kept for frames around concept illustrations */
+  --color-midnight-900: #120f2a;
+  --color-midnight-700: #231e4d;
+  --color-lavender-300: #a9a4c9;
+
+  --font-mono: var(--font-plex-mono), "Pretendard Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-sans: var(--font-plex-sans), "Pretendard Variable", Pretendard, -apple-system,
     BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Segoe UI", system-ui,
     sans-serif;
 
-  --ease-spring: cubic-bezier(0.22, 1.05, 0.36, 1);
+  --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @layer base {
   html {
-    color-scheme: dark;
+    color-scheme: light;
     scroll-behavior: smooth;
     /* Anchor targets clear the fixed header */
     scroll-padding-top: 5.5rem;
@@ -50,8 +58,8 @@
   }
 
   body {
-    background: var(--color-midnight-900);
-    color: var(--color-cream-100);
+    background: var(--color-paper);
+    color: var(--color-ink);
     font-family: var(--font-sans);
     font-optical-sizing: auto;
     -webkit-font-smoothing: antialiased;
@@ -65,6 +73,8 @@
   h3,
   p,
   li,
+  dd,
+  figcaption,
   summary {
     word-break: keep-all;
     overflow-wrap: break-word;
@@ -79,13 +89,13 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-cream-100);
+    outline: 2px solid var(--color-ink);
     outline-offset: 3px;
   }
 
   ::selection {
-    background: rgb(255 149 0 / 0.3);
-    color: #fff;
+    background: rgb(255 149 0 / 0.28);
+    color: var(--color-ink);
   }
 
   summary {
@@ -97,20 +107,21 @@
 }
 
 @layer components {
-  /* Headlines: DM Sans 800 (Pretendard 800 for Hangul) */
+  /* Headlines: large and light, set tight */
   .display {
-    font-weight: 800;
-    letter-spacing: -0.022em;
-    line-height: 1.05;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.08;
   }
   :lang(ko) .display {
-    letter-spacing: -0.022em;
-    line-height: 1.24;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
   }
 
   /* Hero entrance. Pure CSS so the first screen never waits for JavaScript. */
   .rise {
-    animation: rise 0.8s var(--ease-spring) both;
+    animation: rise 0.5s var(--ease-spring) both;
     animation-delay: var(--rise-delay, 0ms);
   }
 }
@@ -118,35 +129,11 @@
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(14px);
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
     transform: none;
-  }
-}
-
-/* Scroll reveal — progressive enhancement.
- * Content is visible by default (no JavaScript, reduced motion). The hidden
- * start state applies only once RevealObserver has marked the page as ready,
- * and only to elements that were below the screen at that moment. */
-@media (prefers-reduced-motion: no-preference) {
-  [data-reveal-ready] [data-reveal]:not([data-revealed]) {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  [data-reveal-ready] [data-reveal][data-revealed] {
-    transition:
-      opacity 0.7s var(--ease-spring),
-      transform 0.7s var(--ease-spring);
-    transition-delay: var(--reveal-delay, 0ms);
-  }
-  /* Items in the same row follow one another */
-  [data-reveal-stagger] > :nth-child(3n + 2) {
-    --reveal-delay: 80ms;
-  }
-  [data-reveal-stagger] > :nth-child(3n + 3) {
-    --reveal-delay: 160ms;
   }
 }
 
@@ -179,27 +166,19 @@
   }
 }
 
-/* Printing: never leave content waiting for a scroll that will not happen. */
-@media print {
-  [data-reveal] {
-    opacity: 1 !important;
-    transform: none !important;
-  }
-}
-
 @media (pointer: fine) {
   ::-webkit-scrollbar {
     width: 10px;
     height: 10px;
   }
   ::-webkit-scrollbar-track {
-    background: var(--color-midnight-900);
+    background: var(--color-paper);
   }
   ::-webkit-scrollbar-thumb {
-    background: var(--color-midnight-600);
+    background: var(--color-line-strong);
     border-radius: 9999px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #4a4290;
+    background: var(--color-ink-3);
   }
 }

@@ -8,8 +8,8 @@ export default function NotFound() {
 
   return (
     <main className="flex min-h-svh flex-col items-center justify-center px-6 text-center">
-      <p className="display text-[5rem] text-cream-100">404</p>
-      <p className="mt-3 text-[17px] text-lavender-300">{t("title")}</p>
+      <p className="display text-[5rem] text-ink">404</p>
+      <p className="mt-3 text-[17px] text-ink-2">{t("title")}</p>
       <ButtonLink
         href={getPathname({ href: "/", locale })}
         variant="secondary"

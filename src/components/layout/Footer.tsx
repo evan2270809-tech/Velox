@@ -8,7 +8,7 @@ export function Footer() {
   const t = useTranslations("footer");
 
   return (
-    <footer className="border-t border-midnight-600/50 bg-midnight-800">
+    <footer className="border-t border-line bg-paper-2">
       <div
         className={cn(
           container,
@@ -24,20 +24,20 @@ export function Footer() {
             unoptimized
             className="h-6 w-auto"
           />
-          <p className="mt-7 text-[15px] text-cream-100">{t("company")}</p>
+          <p className="mt-7 text-[15px] text-ink">{t("company")}</p>
           {site.showFoundedLine && (
-            <p className="mt-1.5 text-[14px] text-lavender-300">{t("founded")}</p>
+            <p className="mt-1.5 text-[14px] text-ink-2">{t("founded")}</p>
           )}
         </div>
 
         <div className="lg:text-right">
           <a
             href={mailtoHref}
-            className="text-[15px] text-cream-100 underline decoration-cream-100/30 underline-offset-4 transition-colors hover:decoration-cream-100"
+            className="text-[15px] text-ink underline decoration-ink/25 underline-offset-4 transition-colors hover:decoration-ink"
           >
             {site.contactEmail}
           </a>
-          <p className="mt-1.5 text-[14px] text-lavender-300">{t("rights")}</p>
+          <p className="mt-1.5 text-[14px] text-ink-2">{t("rights")}</p>
         </div>
       </div>
     </footer>

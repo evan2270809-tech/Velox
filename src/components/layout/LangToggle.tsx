@@ -10,7 +10,7 @@ export function LangToggle() {
   const locale = useLocale();
 
   return (
-    <div className="inline-flex items-center rounded-full bg-cream-100/[0.06] p-0.5 text-[12.5px] font-semibold ring-1 ring-inset ring-cream-100/15">
+    <div className="inline-flex items-center rounded-lg bg-surface p-0.5 font-mono text-[12px] ring-1 ring-inset ring-line">
       {routing.locales.map((loc) => {
         const active = loc === locale;
         return (
@@ -22,8 +22,8 @@ export function LangToggle() {
             aria-label={localeNames[loc]}
             aria-current={active ? "true" : undefined}
             className={cn(
-              "grid h-7 min-w-9 place-items-center rounded-full px-2.5 transition-colors",
-              active ? "bg-cream-100 text-midnight-900" : "text-cream-100/70 hover:text-cream-100",
+              "grid h-7 min-w-9 place-items-center rounded-md px-2 transition-colors",
+              active ? "bg-ink text-paper" : "text-ink-2 hover:text-ink",
             )}
           >
             {loc.toUpperCase()}

@@ -78,71 +78,70 @@ export type BuildingVideo = {
   height: number;
 };
 
+/** 이미지 파일과 원본 크기. 틀이 이 비율을 따르므로 그림이 잘리지 않는다. */
+export type MediaImage = { src: string; width: number; height: number };
+
 /**
- * "우리가 만드는 것" 카드 6장. 순서·상태 배지·이미지를 여기서 정한다.
- * 첫 카드는 넓은 칸(데스크톱 4/6)이 된다. 지금은 실제 기록 재생 영상.
+ * 첫 화면 영상: 실제 기록 재생 화면(Prototype 1 Collector Review).
+ * 재생 버튼·컨트롤 없이, 화면에 보이는 동안 소리 없이 반복 재생된다.
+ */
+export const heroVideo: BuildingVideo = {
+  src: "/videos/collector-review.mp4",
+  poster: "/images/real/collector-review-poster.webp",
+  width: 1920,
+  height: 900,
+};
+
+/**
+ * "우리가 만드는 것" 카드 6장. 순서·상태·이미지를 여기서 정한다.
+ * 배치: 1·2번 반반, 3번 한 줄 전체, 4~6번 세 칸.
+ * 수집 소프트웨어 카드는 그림 대신 실제 기록의 측정값(readout)을 보여 준다
+ * (재생 영상은 첫 화면에 있다).
  * id 는 messages 의 building.items.<id> 문안과 짝을 이룬다.
  */
 export const buildingItems = [
   {
     id: "collectionSoftware",
     status: "development",
-    // 실제 기록 재생 화면(Prototype 1 Collector Review). 영상이 있으면 이미지 대신 영상을 보여 준다.
-    image: "/images/real/collector-review-poster.webp",
-    video: {
-      src: "/videos/collector-review.mp4",
-      poster: "/images/real/collector-review-poster.webp",
-      width: 1920,
-      height: 900,
-    },
+    readout: true,
   },
   {
     id: "glovePrototype",
     status: "working",
     // 승인 후 실제 자료로 교체할 자리
-    image: "/images/concept/bg-01-glove-closeup.webp",
+    image: { src: "/images/concept/bg-01-glove-closeup.webp", width: 1040, height: 585 },
   },
   {
     id: "captureSystem",
     status: "development",
-    image: "/images/concept/hardware-lineup-five-fingers.webp",
+    image: { src: "/images/concept/hardware-lineup-five-fingers.webp", width: 1667, height: 834 },
   },
   {
     id: "wholeHandGlove",
     status: "concept",
     // 승인 후 실제 자료로 교체할 자리
-    image: "/images/concept/bg-07-open-hand.webp",
+    image: { src: "/images/concept/bg-07-open-hand.webp", width: 1100, height: 687 },
   },
   {
     id: "fingertipShearSensor",
     status: "concept",
     // 승인 후 실제 자료로 교체할 자리
-    image: "/images/concept/bg-05-fingertip-tactile-grid.webp",
+    image: { src: "/images/concept/bg-05-fingertip-tactile-grid.webp", width: 1020, height: 637 },
   },
   {
     id: "dataFormat",
     status: "development",
-    image: "/images/concept/bg-04-signal-pane.webp",
+    image: { src: "/images/concept/bg-04-signal-pane.webp", width: 1220, height: 762 },
   },
 ] as const satisfies ReadonlyArray<{
   id: string;
   status: BuildStatus;
-  image: string;
-  video?: BuildingVideo;
+  image?: MediaImage;
+  readout?: boolean;
 }>;
 
 export type BuildingItemId = (typeof buildingItems)[number]["id"];
 
-/** 섹션 배경 */
-export const sectionImages = {
-  heroDesktop: "/images/concept/bg-01-glove-hand-glow.webp",
-  heroMobile: "/images/concept/bg-01-glove-hand-glow-mobile.webp",
-  whyTouch: "/images/concept/bg-03-human-robot-touch.webp",
-  trace: "/images/concept/bg-04-raw-to-clean-data.webp",
-  stage: "/images/concept/bg-07-hand-rising-data-tiles.webp",
-  audience: "/images/concept/bg-08-robot-hand-receiving-data.webp",
-  faqContact: "/images/concept/bg-02-light-streaks.webp",
-} as const;
 
 /** 공유 이미지 (1200×630) */
 export const shareImages: Record<Locale, string> = {

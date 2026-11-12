@@ -1,128 +1,88 @@
 import { useTranslations } from "next-intl";
 import { MediaSlot } from "@/components/ui/MediaSlot";
-import { ReplayVideo } from "@/components/ui/ReplayVideo";
-import { Reveal, RevealItem, RevealStagger } from "@/components/ui/Reveal";
-import { SectionHeader, container } from "@/components/ui/SectionHeader";
+import { SectionHeader, container, sectionFrame } from "@/components/ui/SectionHeader";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { buildingItems } from "@/content/site";
 import { cn } from "@/lib/cn";
 
 /**
- * Layout by position: a wide feature card (real footage, the first thing to
- * see), a narrow card beside it, one full-width card (the system being
- * integrated), then three smaller ones.
+ * Layout by position: two halves, one full-width row with the image beside the
+ * text, then three thirds. Every image keeps its own aspect ratio.
  */
-type Layout = "feature" | "side" | "banner" | "third";
+type Layout = "half" | "banner" | "third";
 
-const layouts: Layout[] = ["feature", "side", "banner", "third", "third", "third"];
+const layouts: Layout[] = ["half", "half", "banner", "third", "third", "third"];
 
 const cardSpan: Record<Layout, string> = {
-  feature: "sm:col-span-2 lg:col-span-4",
-  side: "sm:col-span-2 lg:col-span-2",
-  banner: "sm:col-span-2 lg:col-span-6",
+  half: "lg:col-span-3",
+  banner: "sm:col-span-2 lg:col-span-6 lg:grid lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]",
   third: "lg:col-span-2",
 };
 
-const mediaShape: Record<Layout, string> = {
-  feature: "aspect-[16/9]",
-  side: "aspect-[16/9] sm:aspect-[2.4/1] lg:aspect-[4/3]",
-  banner: "aspect-[2/1] lg:aspect-[3/1]",
-  third: "aspect-[16/10]",
-};
-
 const mediaSizes: Record<Layout, string> = {
-  feature: "(max-width: 1023px) 100vw, 800px",
-  side: "(max-width: 1023px) 100vw, 400px",
-  banner: "(max-width: 1279px) 100vw, 1200px",
+  half: "(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 600px",
+  banner: "(max-width: 1023px) 100vw, 800px",
   third: "(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 400px",
 };
+
+const READOUT = ["episode", "excerpt", "camera", "glove", "usb"] as const;
 
 export function Building() {
   const t = useTranslations("building");
   const lastIndex = buildingItems.length - 1;
 
   return (
-    <section id="building" className="bg-midnight-800 py-20 lg:py-28">
+    <section id="building" className={sectionFrame}>
       <div className={container}>
-        <Reveal>
-          <SectionHeader title={t("title")} />
-        </Reveal>
+        <SectionHeader title={t("title")} />
 
-        <RevealStagger
-          as="ul"
-          className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:mt-14 lg:grid-cols-6"
-        >
+        <ul className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:mt-16 lg:grid-cols-6">
           {buildingItems.map((item, index) => {
             const layout = layouts[index] ?? "third";
             const title = t(`items.${item.id}.title`);
-            // On tablets the last card would sit alone in a two-column row; let it span.
+            // On tablets the last third would sit alone in a two-column row; let it span.
             const lastThird = layout === "third" && index === lastIndex;
 
             return (
-              <RevealItem
+              <li
                 key={item.id}
-                as="li"
                 className={cn(
-                  "flex flex-col overflow-hidden rounded-[20px] border border-midnight-600/70 bg-midnight-700",
+                  "flex flex-col overflow-hidden rounded-2xl border border-line bg-surface",
                   cardSpan[layout],
-                  lastThird && "sm:col-span-2",
+                  lastThird && "sm:col-span-2 lg:col-span-2",
                 )}
               >
-                {"video" in item ? (
-                  <figure>
-                    <ReplayVideo
-                      video={item.video}
-                      label={`${title} · ${t(`items.${item.id}.media.caption`)}`}
-                      playLabel={t(`items.${item.id}.media.play`)}
-                    />
-                    <figcaption className="border-b border-midnight-600/70 px-6 py-4 lg:px-7">
-                      <span className="block text-[14px] font-semibold text-cream-100">
-                        {t(`items.${item.id}.media.caption`)}
-                      </span>
-                      <span className="mt-1 block text-[13.5px] leading-[1.55] text-lavender-300">
-                        {t(`items.${item.id}.media.detail`)}
-                      </span>
-                    </figcaption>
-                  </figure>
+                {"readout" in item ? (
+                  // The episode shown in the hero, as the Collector reports it.
+                  <dl className="bg-paper-2 px-6 py-4 font-mono text-[12px] leading-5 sm:text-[13px] lg:aspect-[1040/585] lg:content-center">
+                    {READOUT.map((key) => (
+                      <div
+                        key={key}
+                        className="grid grid-cols-[5rem_minmax(0,1fr)] gap-4 border-b sm:grid-cols-[6.5rem_minmax(0,1fr)] border-line py-2 last:border-b-0"
+                      >
+                        <dt className="text-ink-3">{t(`items.${item.id}.readout.${key}.label`)}</dt>
+                        <dd className="text-ink [overflow-wrap:anywhere]">{t(`items.${item.id}.readout.${key}.value`)}</dd>
+                      </div>
+                    ))}
+                  </dl>
                 ) : (
-                  <MediaSlot
-                    src={item.image}
-                    alt={title}
-                    sizes={mediaSizes[layout]}
-                    position={layout === "banner" ? "center 58%" : undefined}
-                    className={cn(
-                      mediaShape[layout],
-                      lastThird && "sm:aspect-[2.4/1] lg:aspect-[16/10]",
-                    )}
-                  />
+                  <MediaSlot image={item.image} alt={title} sizes={mediaSizes[layout]} />
                 )}
 
                 <div
                   className={cn(
-                    "flex flex-1 flex-col p-6 lg:p-7",
-                    layout === "banner" &&
-                      "lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:items-start lg:gap-10 lg:p-8",
+                    "flex flex-1 flex-col p-6",
+                    layout === "banner" && "lg:justify-center lg:p-8",
                   )}
                 >
-                  <div>
-                    <StatusBadge status={item.status} />
-                    <h3 className="mt-4 text-[1.3rem] font-bold leading-[1.25] tracking-[-0.015em] lg:text-[1.4rem]">
-                      {title}
-                    </h3>
-                  </div>
-                  <p
-                    className={cn(
-                      "mt-2.5 text-[15.5px] leading-[1.65] text-cream-100/75",
-                      layout === "banner" && "lg:mt-0 lg:text-[17px]",
-                    )}
-                  >
-                    {t(`items.${item.id}.body`)}
-                  </p>
+                  <StatusBadge status={item.status} />
+                  <h3 className="mt-4 text-[20px] font-medium leading-7">{title}</h3>
+                  <p className="mt-2 text-[15px] leading-6 text-ink-2">{t(`items.${item.id}.body`)}</p>
                 </div>
-              </RevealItem>
+              </li>
             );
           })}
-        </RevealStagger>
+        </ul>
       </div>
     </section>
   );
