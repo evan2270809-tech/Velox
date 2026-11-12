@@ -35,7 +35,12 @@
       },
       "collectionSoftware": {
         "title": "Collection software",
-        "body": "Prototype 1 Collector checks devices, runs a capture and reviews each episode. It already replays our real recordings."
+        "body": "Prototype 1 Collector checks devices, runs a capture and reviews each episode. It already replays our real recordings.",
+        "media": {
+          "caption": "Recorded episode replay",
+          "detail": "Gemini RGB, depth and infrared with the glove signal in raw mV. The USB view is a reference still.",
+          "play": "Play the recorded replay"
+        }
       },
       "captureSystem": {
         "title": "Capture system",

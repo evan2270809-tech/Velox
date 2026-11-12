@@ -35,7 +35,12 @@
       },
       "collectionSoftware": {
         "title": "수집 소프트웨어",
-        "body": "Prototype 1 Collector는 장비를 점검하고, 수집을 진행하고, 에피소드를 다시 봅니다. 실제 기록을 재생할 수 있습니다."
+        "body": "Prototype 1 Collector는 장비를 점검하고, 수집을 진행하고, 에피소드를 다시 봅니다. 실제 기록을 재생할 수 있습니다.",
+        "media": {
+          "caption": "실제 기록 재생",
+          "detail": "Gemini RGB·깊이·적외선 영상과 장갑 신호(raw mV)를 함께 재생합니다. USB 화면은 참고용 정지 사진(Reference still)입니다.",
+          "play": "실제 기록 재생 영상 재생"
+        }
       },
       "captureSystem": {
         "title": "수집 시스템",

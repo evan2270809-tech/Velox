@@ -70,22 +70,37 @@ export function isConceptImage(src: string): boolean {
 
 export type BuildStatus = "working" | "development" | "concept";
 
+/** 카드 영상. 무음 MP4 + 포스터. width/height 는 영상 비율(잘리지 않게 이 비율로 보여 준다). */
+export type BuildingVideo = {
+  src: string;
+  poster: string;
+  width: number;
+  height: number;
+};
+
 /**
  * "우리가 만드는 것" 카드 6장. 순서·상태 배지·이미지를 여기서 정한다.
+ * 첫 카드는 넓은 칸(데스크톱 4/6)이 된다. 지금은 실제 기록 재생 영상.
  * id 는 messages 의 building.items.<id> 문안과 짝을 이룬다.
  */
 export const buildingItems = [
+  {
+    id: "collectionSoftware",
+    status: "development",
+    // 실제 기록 재생 화면(Prototype 1 Collector Review). 영상이 있으면 이미지 대신 영상을 보여 준다.
+    image: "/images/real/collector-review-poster.webp",
+    video: {
+      src: "/videos/collector-review.mp4",
+      poster: "/images/real/collector-review-poster.webp",
+      width: 1920,
+      height: 900,
+    },
+  },
   {
     id: "glovePrototype",
     status: "working",
     // 승인 후 실제 자료로 교체할 자리
     image: "/images/concept/bg-01-glove-closeup.webp",
-  },
-  {
-    id: "collectionSoftware",
-    status: "development",
-    // 승인 후 실제 자료로 교체할 자리
-    image: "/images/concept/bg-02-light-streaks-detail.webp",
   },
   {
     id: "captureSystem",
@@ -113,6 +128,7 @@ export const buildingItems = [
   id: string;
   status: BuildStatus;
   image: string;
+  video?: BuildingVideo;
 }>;
 
 export type BuildingItemId = (typeof buildingItems)[number]["id"];

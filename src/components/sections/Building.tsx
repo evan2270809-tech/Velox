@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl";
 import { MediaSlot } from "@/components/ui/MediaSlot";
+import { ReplayVideo } from "@/components/ui/ReplayVideo";
 import { Reveal, RevealItem, RevealStagger } from "@/components/ui/Reveal";
 import { SectionHeader, container } from "@/components/ui/SectionHeader";
 import { StatusBadge } from "@/components/ui/StatusBadge";
@@ -7,27 +8,31 @@ import { buildingItems } from "@/content/site";
 import { cn } from "@/lib/cn";
 
 /**
- * Layout by position: two large cards (what exists today), one full-width
- * card (the system being integrated), then three smaller ones.
+ * Layout by position: a wide feature card (real footage, the first thing to
+ * see), a narrow card beside it, one full-width card (the system being
+ * integrated), then three smaller ones.
  */
-type Layout = "half" | "banner" | "third";
+type Layout = "feature" | "side" | "banner" | "third";
 
-const layouts: Layout[] = ["half", "half", "banner", "third", "third", "third"];
+const layouts: Layout[] = ["feature", "side", "banner", "third", "third", "third"];
 
 const cardSpan: Record<Layout, string> = {
-  half: "lg:col-span-3",
+  feature: "sm:col-span-2 lg:col-span-4",
+  side: "sm:col-span-2 lg:col-span-2",
   banner: "sm:col-span-2 lg:col-span-6",
   third: "lg:col-span-2",
 };
 
 const mediaShape: Record<Layout, string> = {
-  half: "aspect-[16/9]",
+  feature: "aspect-[16/9]",
+  side: "aspect-[16/9] sm:aspect-[2.4/1] lg:aspect-[4/3]",
   banner: "aspect-[2/1] lg:aspect-[3/1]",
   third: "aspect-[16/10]",
 };
 
 const mediaSizes: Record<Layout, string> = {
-  half: "(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 600px",
+  feature: "(max-width: 1023px) 100vw, 800px",
+  side: "(max-width: 1023px) 100vw, 400px",
   banner: "(max-width: 1279px) 100vw, 1200px",
   third: "(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 400px",
 };
@@ -63,16 +68,34 @@ export function Building() {
                   lastThird && "sm:col-span-2",
                 )}
               >
-                <MediaSlot
-                  src={item.image}
-                  alt={title}
-                  sizes={mediaSizes[layout]}
-                  position={layout === "banner" ? "center 58%" : undefined}
-                  className={cn(
-                    mediaShape[layout],
-                    lastThird && "sm:aspect-[2.4/1] lg:aspect-[16/10]",
-                  )}
-                />
+                {"video" in item ? (
+                  <figure>
+                    <ReplayVideo
+                      video={item.video}
+                      label={`${title} · ${t(`items.${item.id}.media.caption`)}`}
+                      playLabel={t(`items.${item.id}.media.play`)}
+                    />
+                    <figcaption className="border-b border-midnight-600/70 px-6 py-4 lg:px-7">
+                      <span className="block text-[14px] font-semibold text-cream-100">
+                        {t(`items.${item.id}.media.caption`)}
+                      </span>
+                      <span className="mt-1 block text-[13.5px] leading-[1.55] text-lavender-300">
+                        {t(`items.${item.id}.media.detail`)}
+                      </span>
+                    </figcaption>
+                  </figure>
+                ) : (
+                  <MediaSlot
+                    src={item.image}
+                    alt={title}
+                    sizes={mediaSizes[layout]}
+                    position={layout === "banner" ? "center 58%" : undefined}
+                    className={cn(
+                      mediaShape[layout],
+                      lastThird && "sm:aspect-[2.4/1] lg:aspect-[16/10]",
+                    )}
+                  />
+                )}
 
                 <div
                   className={cn(
