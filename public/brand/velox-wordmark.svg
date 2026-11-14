@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 672 100" width="672" height="100" fill="none" stroke="#111111" stroke-width="17" stroke-linecap="round" stroke-linejoin="round">
+  <!-- V -->
+  <path d="M9 9 V48 L55 91 L101 48 V9"/>
+  <!-- E -->
+  <g transform="translate(140 0)"><path d="M101 9 H27 Q9 9 9 27 V73 Q9 91 27 91 H101 M9 50 H78"/></g>
+  <!-- L -->
+  <g transform="translate(280 0)"><path d="M9 9 V73 Q9 91 27 91 H101"/></g>
+  <!-- O, with a stepped corner -->
+  <g transform="translate(420 0)"><path d="M9 27 Q9 9 27 9 H60 L72 23 H86 Q101 23 101 38 V73 Q101 91 83 91 H27 Q9 91 9 73 Z"/></g>
+  <!-- X -->
+  <g transform="translate(560 0)"><path d="M9 9 L101 91 M101 9 L9 91"/></g>
+</svg>

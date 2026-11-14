@@ -13,20 +13,20 @@ type ButtonLinkProps = {
 } & Omit<ComponentPropsWithoutRef<"a">, "href" | "children" | "className">;
 
 const base =
-  "inline-flex shrink-0 items-center justify-center gap-2 rounded-[10px] font-medium " +
+  "inline-flex shrink-0 items-center justify-center gap-2 rounded-xl font-medium whitespace-nowrap " +
   "transition-colors duration-200";
 
 const variants: Record<Variant, string> = {
-  // Orange is reserved for the single main action on a screen.
-  primary: "bg-velox-orange text-on-brand hover:bg-[#ffa62b] active:bg-[#f08c00]",
+  // Ink on white. Orange is kept for the live sensor pads, not for buttons.
+  primary: "bg-ink text-paper hover:bg-[#333] active:translate-y-px",
   secondary:
-    "bg-surface text-ink ring-1 ring-inset ring-line-strong hover:bg-paper-2 hover:ring-ink-3",
+    "bg-surface text-ink ring-1 ring-inset ring-line-strong hover:bg-paper-2 active:translate-y-px",
 };
 
 const sizes: Record<Size, string> = {
-  sm: "h-9 px-3 text-[14px]",
-  md: "h-11 px-4 text-[15px]",
-  lg: "h-12 px-5 text-[15px]",
+  sm: "h-8 px-3 text-[14px]",
+  md: "h-10 px-4 text-[14px]",
+  lg: "h-11 px-5 text-[15px]",
 };
 
 /** A link styled as a button. Works for mailto: links and in-page anchors. */

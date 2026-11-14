@@ -149,11 +149,22 @@ export const shareImages: Record<Locale, string> = {
   ko: "/og/velox-og-ko.jpg",
 };
 
-/** 로고. 지정 워드마크 SVG 를 색 변경 없이 그대로 쓴다. */
+/**
+ * 로고. 사이트용으로 새로 그린 워드마크(둥근 모서리의 기하학적 글자).
+ * 기존 공식 워드마크로 되돌리려면 src 를 "/brand/velox-logo-black.svg", 크기를 539×140 으로 바꾼다.
+ */
 export const logo = {
-  src: "/brand/velox-logo.svg",
-  width: 539,
-  height: 140,
+  src: "/brand/velox-wordmark.svg",
+  width: 672,
+  height: 100,
+} as const;
+
+/** 페이지 주소. 메뉴·푸터·버튼이 모두 여기서 가져간다. */
+export const routes = {
+  home: "/",
+  why: "/why-touch-data",
+  product: "/product",
+  contact: "/contact",
 } as const;
 
 /* -------------------------------------------------------------------------- */

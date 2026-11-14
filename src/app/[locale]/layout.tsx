@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { getSiteUrl, ogLocales, shareImages, site, type Locale } from "@/content/site";
@@ -7,19 +7,18 @@ import { getPathname } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 import "@/styles/globals.css";
 
-// Latin text: IBM Plex Sans, an engineering face that fits a sensor company.
+// Latin text: Geist, a plain engineering grotesque. Headlines are set light (300).
 // Hangul falls through to Pretendard (see globals.css).
-const plexSans = IBM_Plex_Sans({
+const geistSans = Geist({
   subsets: ["latin"],
-  variable: "--font-plex-sans",
+  variable: "--font-geist-sans",
   display: "swap",
 });
 
-// Readouts (dates, statuses, episode data), in the style of the Collector UI.
-const plexMono = IBM_Plex_Mono({
+// Readouts (dates, statuses, labels).
+const geistMono = Geist_Mono({
   subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-plex-mono",
+  variable: "--font-geist-mono",
   display: "swap",
 });
 
@@ -66,7 +65,7 @@ export async function generateMetadata({
 }
 
 export const viewport: Viewport = {
-  themeColor: "#f7f6f2",
+  themeColor: "#ffffff",
   colorScheme: "light",
 };
 
@@ -88,7 +87,7 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
 
   return (
-    <html lang={locale} className={`${plexSans.variable} ${plexMono.variable}`}>
+    <html lang={locale} className={`${geistSans.variable} ${geistMono.variable}`}>
       <body className="font-sans antialiased">{children}</body>
     </html>
   );

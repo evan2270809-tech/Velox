@@ -4,11 +4,12 @@
     "description": "Velox는 촉각 장갑과 수집 시스템으로 로봇 학습용 사람 손 데이터(촉각·영상·동작)를 모읍니다."
   },
   "nav": {
-    "building": "우리가 만드는 것",
-    "whyTouch": "왜 촉각인가",
-    "trace": "출처를 추적할 수 있는 데이터",
-    "faq": "FAQ",
-    "contact": "문의하기"
+    "home": "홈",
+    "why": "왜 이 데이터인가",
+    "product": "제품",
+    "contact": "문의하기",
+    "menu": "메뉴",
+    "close": "메뉴 닫기"
   },
   "common": {
     "conceptLabel": "컨셉 이미지"
@@ -27,7 +28,7 @@
     "ctaSecondary": "만들고 있는 것 보기",
     "media": {
       "caption": "실제 기록 재생",
-      "detail": "Gemini RGB·깊이·적외선 영상과 장갑 신호(raw mV)를 함께 재생합니다. USB 화면은 참고용 정지 사진(Reference still)입니다."
+      "detail": "Gemini RGB·깊이·적외선 영상과 장갑 신호(raw mV)를 함께 재생합니다. USB 화면은 참고용 정지 사진(Reference still)에 약한 움직임을 더한 것입니다."
     }
   },
   "building": {
@@ -187,5 +188,167 @@
   "notFound": {
     "title": "페이지를 찾을 수 없습니다.",
     "back": "홈으로"
+  },
+  "home": {
+    "headline1": "로봇 학습을 위한",
+    "headline2": "고품질 데이터",
+    "hint": "데이터 위로 커서를 움직여 보세요",
+    "conceptNote": "컨셉 모델입니다. 설계 목표만 나타냅니다.",
+    "canvasLabel": "Velox 전체 손 촉각 장갑의 3D 컨셉 모델",
+    "links": {
+      "wholeHand": "장갑 살펴보기",
+      "shear": "센서 구상 보기",
+      "capture": "만들고 있는 것 보기"
+    },
+    "streams": {
+      "rgbd": "RGB + 깊이",
+      "tactile": "촉각",
+      "motion": "손 동작",
+      "time": "원본 시각",
+      "task": "작업 라벨"
+    },
+    "traceNote": "컨셉 모델에서 만든 예시 신호이며, 실제 기록이 아닙니다.",
+    "statement": "사람의 촉각을, 로봇이 물리 세계와 상호작용하는 법을 배우는 데이터로 만듭니다.",
+    "evidenceLink": "연구와 실험 조건 보기",
+    "pages": {
+      "why": {
+        "title": "왜 촉각인가",
+        "body": "촉각을 더하면 접촉이 많은 작업을 로봇이 더 잘 배운다는 연구 결과가 나오고 있습니다.",
+        "cta": "왜 이 데이터인가"
+      },
+      "product": {
+        "title": "우리가 만드는 것",
+        "body": "Velox는 로봇 학습에 쓰일 사람 손 데이터를 모으기 위해 촉각 수집 하드웨어와 소프트웨어를 만듭니다.",
+        "cta": "제품 보기"
+      },
+      "contact": {
+        "title": "이야기 나눠요",
+        "body": "로봇 학습, 촉각 센싱, 손 데이터를 다루고 계신가요? 필요한 데이터를 알려 주세요.",
+        "cta": "문의하기"
+      }
+    },
+    "tags": {
+      "glove": "촉각 장갑",
+      "contact": "접촉",
+      "robot": "로봇 손"
+    },
+    "heroNote": "컨셉 이미지입니다. 설계 목표만 나타냅니다.",
+    "heroCanvasLabel": "3D 컨셉 이미지: Velox 촉각 장갑을 낀 손이 로봇 손을 향해 뻗고, 손끝 사이로 데이터가 흐르는 모습"
+  },
+  "why": {
+    "eyebrow": "왜 이 데이터인가",
+    "title": "왜 이 데이터가 필요한가",
+    "success": "작업 성공률",
+    "bars": {
+      "matchLighting": {
+        "a": "영상만",
+        "b": "영상 + 촉각",
+        "av": "20%",
+        "bv": "80%"
+      },
+      "touchScale": {
+        "a": "사람 데이터 중간학습 없음",
+        "b": "사람 영상 + 촉각 데이터 중간학습",
+        "av": "22.5%",
+        "bv": "57.5%"
+      }
+    }
+  },
+  "product": {
+    "eyebrow": "제품",
+    "title": "우리가 만드는 것",
+    "lead": "Velox는 로봇 학습에 쓰일 사람 손 데이터를 모으기 위해 촉각 수집 하드웨어와 소프트웨어를 만듭니다.",
+    "lab": {
+      "viewLabel": "보기",
+      "poseLabel": "자세",
+      "views": {
+        "palm": "손바닥",
+        "back": "손등",
+        "side": "옆"
+      },
+      "poses": {
+        "relaxed": "편안히",
+        "flat": "펴기",
+        "grip": "쥐기"
+      },
+      "hint": "끌어서 돌려 보세요. 패드 위로 움직이면 눌립니다.",
+      "stackLabel": "구조",
+      "assembled": "조립",
+      "exploded": "분해",
+      "layers": {
+        "pads": "촉각 패드",
+        "shell": "장갑 외피",
+        "inner": "플렉스 배선과 동작 센서",
+        "hub": "허브"
+      }
+    },
+    "sensor": {
+      "modeLabel": "접촉",
+      "stackLabel": "구조",
+      "modes": {
+        "normal": {
+          "label": "수직 하중",
+          "caption": "눌리면 정전용량이 바뀝니다"
+        },
+        "tangential": {
+          "label": "접선 방향 접촉",
+          "caption": "옆으로 움직이면 겹치는 면적이 바뀝니다"
+        }
+      },
+      "exploded": "분해",
+      "assembled": "조립",
+      "layers": {
+        "shield": "차폐층",
+        "top": "위 전극",
+        "pillars": "부드러운 기둥층",
+        "bottom": "아래 전극"
+      },
+      "note": "설계 탐색 중입니다. 단순화한 그림이며 실제 비율이 아닙니다.",
+      "hint": "끌어서 돌려 보세요",
+      "canvasLabel": "손끝 센서 구상을 층별로 나눠 보여 주는 3D 그림"
+    },
+    "kit": {
+      "label": "수집 키트",
+      "diagram": "착용한 수집 키트를 선으로 그린 그림: 머리 카메라, 촉각 장갑, 손목 카메라, 마이크",
+      "note": "개략도이며 실제 비율이 아닙니다.",
+      "items": {
+        "gloves": {
+          "title": "촉각 장갑",
+          "body": "양손에 하나씩 착용합니다."
+        },
+        "wrist": {
+          "title": "손목 카메라",
+          "body": "양손 아래에 하나씩 있습니다."
+        },
+        "head": {
+          "title": "머리 카메라",
+          "body": "Gemini 2 RGB-D 카메라를 머리에 씁니다."
+        },
+        "audio": {
+          "title": "음성",
+          "body": "에피소드와 함께 음성을 기록합니다."
+        }
+      }
+    }
+  },
+  "contactPage": {
+    "eyebrow": "문의",
+    "direct": "또는 메일로 바로 보내기",
+    "form": {
+      "company": "회사 또는 연구실",
+      "name": "이름",
+      "email": "업무용 이메일",
+      "type": "문의 종류",
+      "types": {
+        "data": "로봇 학습용 데이터",
+        "research": "연구 협업",
+        "other": "기타"
+      },
+      "message": "내용",
+      "messageHint": "어떤 데이터가 필요하신가요?",
+      "submit": "메일 작성하기",
+      "note": "입력한 내용이 채워진 메일 작성 창이 열립니다. 이 페이지에서 전송되는 정보는 없습니다.",
+      "subject": "Velox 문의"
+    }
   }
 }

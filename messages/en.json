@@ -4,11 +4,12 @@
     "description": "Velox builds a tactile glove and capture system to collect human hand data — touch, video and motion — for robot learning."
   },
   "nav": {
-    "building": "What we're building",
-    "whyTouch": "Why touch matters",
-    "trace": "Data you can trace",
-    "faq": "FAQ",
-    "contact": "Contact us"
+    "home": "Home",
+    "why": "Why this data",
+    "product": "Product",
+    "contact": "Contact us",
+    "menu": "Menu",
+    "close": "Close menu"
   },
   "common": {
     "conceptLabel": "Concept illustration"
@@ -27,7 +28,7 @@
     "ctaSecondary": "See what we're building",
     "media": {
       "caption": "Recorded episode replay",
-      "detail": "Gemini RGB, depth and infrared with the glove signal in raw mV. The USB view is a reference still."
+      "detail": "Gemini RGB, depth and infrared with the glove signal in raw mV. The USB view is a reference still, shown with slight motion."
     }
   },
   "building": {
@@ -187,5 +188,167 @@
   "notFound": {
     "title": "Page not found.",
     "back": "Back home"
+  },
+  "home": {
+    "headline1": "High-quality data",
+    "headline2": "for robot learning",
+    "hint": "Move your cursor through the data",
+    "conceptNote": "Concept model. Design targets only.",
+    "canvasLabel": "3D concept model of the Velox whole-hand tactile glove",
+    "links": {
+      "wholeHand": "Explore the glove",
+      "shear": "See the sensor concept",
+      "capture": "See what we're building"
+    },
+    "streams": {
+      "rgbd": "RGB + depth",
+      "tactile": "Tactile",
+      "motion": "Hand motion",
+      "time": "Source time",
+      "task": "Task label"
+    },
+    "traceNote": "Illustrative signal from the concept model, not recorded data.",
+    "statement": "We turn human touch into data that helps robots learn to interact with the physical world.",
+    "evidenceLink": "Read the studies and conditions",
+    "pages": {
+      "why": {
+        "title": "Why touch matters",
+        "body": "Published studies show that adding touch helps robots learn contact-rich tasks.",
+        "cta": "Why this data"
+      },
+      "product": {
+        "title": "What we're building",
+        "body": "Velox builds tactile capture hardware and software to collect human hand data for robot learning.",
+        "cta": "See the product"
+      },
+      "contact": {
+        "title": "Let's talk",
+        "body": "Working on robot learning, tactile sensing or hand data? Tell us what data you need.",
+        "cta": "Contact us"
+      }
+    },
+    "tags": {
+      "glove": "Tactile glove",
+      "contact": "Contact",
+      "robot": "Robot hand"
+    },
+    "heroNote": "Concept illustration. Design targets only.",
+    "heroCanvasLabel": "3D concept illustration: a hand in the Velox tactile glove reaching towards a robot hand, with data flowing between the fingertips"
+  },
+  "why": {
+    "eyebrow": "Why this data",
+    "title": "Why you need this data",
+    "success": "Task success",
+    "bars": {
+      "matchLighting": {
+        "a": "Vision only",
+        "b": "Vision + touch",
+        "av": "20%",
+        "bv": "80%"
+      },
+      "touchScale": {
+        "a": "Without human-data mid-training",
+        "b": "With human vision + touch mid-training",
+        "av": "22.5%",
+        "bv": "57.5%"
+      }
+    }
+  },
+  "product": {
+    "eyebrow": "Product",
+    "title": "What we're building",
+    "lead": "Velox builds tactile capture hardware and software to collect human hand data for robot learning.",
+    "lab": {
+      "viewLabel": "View",
+      "poseLabel": "Pose",
+      "views": {
+        "palm": "Palm",
+        "back": "Back",
+        "side": "Side"
+      },
+      "poses": {
+        "relaxed": "Relaxed",
+        "flat": "Flat",
+        "grip": "Grip"
+      },
+      "hint": "Drag to rotate. Move over the pads to press them.",
+      "stackLabel": "Stack",
+      "assembled": "Assembled",
+      "exploded": "Exploded",
+      "layers": {
+        "pads": "Tactile pads",
+        "shell": "Glove shell",
+        "inner": "Flex tails and motion sensors",
+        "hub": "Hub"
+      }
+    },
+    "sensor": {
+      "modeLabel": "Contact",
+      "stackLabel": "Stack",
+      "modes": {
+        "normal": {
+          "label": "Normal load",
+          "caption": "Compression changes capacitance"
+        },
+        "tangential": {
+          "label": "Tangential contact",
+          "caption": "Lateral motion changes overlap"
+        }
+      },
+      "exploded": "Exploded",
+      "assembled": "Assembled",
+      "layers": {
+        "shield": "Shield",
+        "top": "Top electrodes",
+        "pillars": "Soft pillar layer",
+        "bottom": "Bottom electrodes"
+      },
+      "note": "Design exploration in progress. Simplified illustration, not to scale.",
+      "hint": "Drag to rotate",
+      "canvasLabel": "3D illustration of the fingertip sensor concept, shown as separate layers"
+    },
+    "kit": {
+      "label": "Capture kit",
+      "diagram": "Line drawing of the capture kit as worn: head camera, tactile gloves, wrist cameras and microphone",
+      "note": "Schematic, not to scale.",
+      "items": {
+        "gloves": {
+          "title": "Tactile gloves",
+          "body": "One on each hand."
+        },
+        "wrist": {
+          "title": "Wrist cameras",
+          "body": "One under each hand."
+        },
+        "head": {
+          "title": "Head camera",
+          "body": "A Gemini 2 RGB-D camera worn on the head."
+        },
+        "audio": {
+          "title": "Audio",
+          "body": "Voice, recorded with the episode."
+        }
+      }
+    }
+  },
+  "contactPage": {
+    "eyebrow": "Contact",
+    "direct": "Or email us directly",
+    "form": {
+      "company": "Company or lab",
+      "name": "Name",
+      "email": "Work email",
+      "type": "Inquiry type",
+      "types": {
+        "data": "Data for robot learning",
+        "research": "Research collaboration",
+        "other": "Other"
+      },
+      "message": "Message",
+      "messageHint": "What data do you need?",
+      "submit": "Write email",
+      "note": "Opens your email app with this message filled in. Nothing is sent from this page.",
+      "subject": "Velox inquiry"
+    }
   }
 }
