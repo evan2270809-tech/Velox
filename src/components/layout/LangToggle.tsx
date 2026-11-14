@@ -15,8 +15,10 @@ export function LangToggle({ locale }: { locale: string }) {
       pathname,
     ) || "/";
 
+  const labels: Record<string, string> = { en: "EN", ko: "한국어" };
+
   return (
-    <div className="inline-flex items-center rounded-[10px] p-0.5 font-mono text-[12px] ring-1 ring-inset ring-line">
+    <div className="relative inline-flex items-center rounded-full bg-paper-2 p-[3px] text-[12px] font-medium leading-none">
       {site.locales.map((loc) => {
         const active = loc === locale;
         const href = loc === site.defaultLocale ? bare : `/${loc}${bare === "/" ? "" : bare}`;
@@ -29,11 +31,13 @@ export function LangToggle({ locale }: { locale: string }) {
             aria-label={localeNames[loc]}
             aria-current={active ? "true" : undefined}
             className={cn(
-              "grid h-7 min-w-9 place-items-center rounded-lg px-2 transition-colors",
-              active ? "bg-ink text-paper" : "text-ink-2 hover:text-ink",
+              "grid h-[26px] place-items-center rounded-full px-3 transition-[color,background-color,box-shadow] duration-300 ease-out",
+              active
+                ? "bg-paper text-ink shadow-[0_1px_2px_rgb(17_17_17/0.12),0_0_0_1px_rgb(17_17_17/0.04)]"
+                : "text-ink-3 hover:text-ink",
             )}
           >
-            {loc.toUpperCase()}
+            {labels[loc] ?? loc.toUpperCase()}
           </a>
         );
       })}

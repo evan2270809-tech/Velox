@@ -21,11 +21,8 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       <Header />
       <main>
         <HomeStory
-          chip={hero("chip")}
           headline={[t("headline1"), t("headline2")]}
           sub={hero("sub")}
-          conceptNote={t("heroNote")}
-          hint={t("hint")}
           canvasLabel={t("heroCanvasLabel")}
           traceNote={t("traceNote")}
           actions={
@@ -56,7 +53,6 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               link: { href: `${path(routes.product)}#system`, label: t("links.capture") },
             },
           ]}
-          tags={[t("tags.glove"), t("tags.contact"), t("tags.robot")]}
           streams={[
             { label: t("streams.rgbd") },
             { label: t("streams.tactile"), live: true },

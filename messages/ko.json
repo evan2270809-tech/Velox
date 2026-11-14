@@ -5,7 +5,7 @@
   },
   "nav": {
     "home": "홈",
-    "why": "왜 이 데이터인가",
+    "why": "왜 촉각 데이터인가",
     "product": "제품",
     "contact": "문의하기",
     "menu": "메뉴",
@@ -23,7 +23,7 @@
   "hero": {
     "chip": "시제품 단계 · 2026년 11월",
     "headline": "<accent>로봇 학습을 위한</accent> 고품질 데이터",
-    "sub": "사람 손이 누르고, 쥐고, 미끄러지는 순간을 영상·손 동작과 함께 기록하는 촉각 장갑과 수집 시스템을 만들고 있습니다.",
+    "sub": "VLA는 손의 움직임만 볼 뿐, 감각은 보지 못합니다.\n그 빠진 감각, 촉각 데이터를 저희가 제공합니다.",
     "ctaPrimary": "문의하기",
     "ctaSecondary": "만들고 있는 것 보기",
     "media": {
@@ -40,7 +40,7 @@
       },
       "collectionSoftware": {
         "title": "수집 소프트웨어",
-        "body": "Prototype 1 Collector는 장비를 점검하고, 수집을 진행하고, 에피소드를 다시 봅니다. 실제 기록을 재생할 수 있습니다.",
+        "body": "V1 Collector는 장비를 점검하고, 수집을 진행하고, 에피소드를 다시 봅니다. 실제 기록을 재생할 수 있습니다.",
         "readout": {
           "episode": {
             "label": "에피소드",
@@ -74,7 +74,7 @@
       },
       "fingertipShearSensor": {
         "title": "손끝 전단 센서",
-        "body": "누르는 힘과 옆으로 미는 힘(전단력)을 함께 읽도록 설계 중인 손끝 센서입니다. 전단력은 미끄러짐을 알려 주는 신호입니다."
+        "body": "압력과 전단력을 모두 감지하도록 손끝 센서를 직접 설계하고 있습니다."
       },
       "dataFormat": {
         "title": "데이터 형태",
@@ -181,8 +181,8 @@
     "cta": "메일 보내기"
   },
   "footer": {
-    "company": "Velox · 홍콩 / 심천",
-    "founded": "HKUST 학생들이 창업한 팀",
+    "company": "Velox · 홍콩 / 대한민국",
+    "founded": "HKUST에서 창업",
     "rights": "© 2026 Velox"
   },
   "notFound": {
@@ -190,8 +190,8 @@
     "back": "홈으로"
   },
   "home": {
-    "headline1": "로봇 학습을 위한",
-    "headline2": "고품질 데이터",
+    "headline1": "피지컬 AI에",
+    "headline2": "촉각을 더하다",
     "hint": "데이터 위로 커서를 움직여 보세요",
     "conceptNote": "컨셉 모델입니다. 설계 목표만 나타냅니다.",
     "canvasLabel": "Velox 전체 손 촉각 장갑의 3D 컨셉 모델",
@@ -214,7 +214,7 @@
       "why": {
         "title": "왜 촉각인가",
         "body": "촉각을 더하면 접촉이 많은 작업을 로봇이 더 잘 배운다는 연구 결과가 나오고 있습니다.",
-        "cta": "왜 이 데이터인가"
+        "cta": "왜 촉각 데이터인가"
       },
       "product": {
         "title": "우리가 만드는 것",
@@ -227,17 +227,12 @@
         "cta": "문의하기"
       }
     },
-    "tags": {
-      "glove": "촉각 장갑",
-      "contact": "접촉",
-      "robot": "로봇 손"
-    },
     "heroNote": "컨셉 이미지입니다. 설계 목표만 나타냅니다.",
     "heroCanvasLabel": "3D 컨셉 이미지: Velox 촉각 장갑을 낀 손이 로봇 손을 향해 뻗고, 손끝 사이로 데이터가 흐르는 모습"
   },
   "why": {
-    "eyebrow": "왜 이 데이터인가",
-    "title": "왜 이 데이터가 필요한가",
+    "eyebrow": "왜 촉각 데이터인가",
+    "title": "촉각 데이터가 필요한 이유",
     "success": "작업 성공률",
     "bars": {
       "matchLighting": {
@@ -259,57 +254,23 @@
     "title": "우리가 만드는 것",
     "lead": "Velox는 로봇 학습에 쓰일 사람 손 데이터를 모으기 위해 촉각 수집 하드웨어와 소프트웨어를 만듭니다.",
     "lab": {
-      "viewLabel": "보기",
-      "poseLabel": "자세",
-      "views": {
-        "palm": "손바닥",
-        "back": "손등",
-        "side": "옆"
-      },
-      "poses": {
-        "relaxed": "편안히",
-        "flat": "펴기",
-        "grip": "쥐기"
-      },
-      "hint": "끌어서 돌려 보세요. 패드 위로 움직이면 눌립니다.",
-      "stackLabel": "구조",
       "assembled": "조립",
       "exploded": "분해",
       "layers": {
         "pads": "촉각 패드",
         "shell": "장갑 외피",
         "inner": "플렉스 배선과 동작 센서",
-        "hub": "허브"
+        "hub": "프로세서"
       }
     },
     "sensor": {
-      "modeLabel": "접촉",
-      "stackLabel": "구조",
-      "modes": {
-        "normal": {
-          "label": "수직 하중",
-          "caption": "눌리면 정전용량이 바뀝니다"
-        },
-        "tangential": {
-          "label": "접선 방향 접촉",
-          "caption": "옆으로 움직이면 겹치는 면적이 바뀝니다"
-        }
-      },
-      "exploded": "분해",
-      "assembled": "조립",
-      "layers": {
-        "shield": "차폐층",
-        "top": "위 전극",
-        "pillars": "부드러운 기둥층",
-        "bottom": "아래 전극"
-      },
-      "note": "설계 탐색 중입니다. 단순화한 그림이며 실제 비율이 아닙니다.",
+      "note": "단순화한 그림이며 실제 비율이 아닙니다.",
       "hint": "끌어서 돌려 보세요",
-      "canvasLabel": "손끝 센서 구상을 층별로 나눠 보여 주는 3D 그림"
+      "canvasLabel": "손끝 센서를 층별로 나눠 보여 주는 3D 선 그림"
     },
     "kit": {
       "label": "수집 키트",
-      "diagram": "착용한 수집 키트를 선으로 그린 그림: 머리 카메라, 촉각 장갑, 손목 카메라, 마이크",
+      "diagram": "착용한 수집 키트의 3D 선 스케치: 머리 카메라, 촉각 장갑, 손목 카메라",
       "note": "개략도이며 실제 비율이 아닙니다.",
       "items": {
         "gloves": {
@@ -318,17 +279,17 @@
         },
         "wrist": {
           "title": "손목 카메라",
-          "body": "양손 아래에 하나씩 있습니다."
+          "body": "양손 아래에 하나씩 있습니다. 음성도 이 카메라에서 기록할 예정입니다."
         },
         "head": {
           "title": "머리 카메라",
           "body": "Gemini 2 RGB-D 카메라를 머리에 씁니다."
-        },
-        "audio": {
-          "title": "음성",
-          "body": "에피소드와 함께 음성을 기록합니다."
         }
       }
+    },
+    "pressure": {
+      "hint": "손끝을 눌러 보세요",
+      "note": "Collector 화면의 인터랙티브 데모입니다. 값은 실제 기록이 아닌 시뮬레이션입니다."
     }
   },
   "contactPage": {

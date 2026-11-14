@@ -1,8 +1,9 @@
 import type { ReactNode } from "react";
 import { useTranslations } from "next-intl";
-import { GloveLab } from "@/components/sections/GloveLab";
-import { SensorLab } from "@/components/sections/SensorLab";
-import { CaptureKitDiagram } from "@/components/ui/CaptureKitDiagram";
+import { GloveScrollStory } from "@/components/sections/GloveScrollStory";
+import { PressureDemo } from "@/components/sections/PressureDemo";
+import { SensorScrollStory } from "@/components/sections/SensorScrollStory";
+import { CaptureKit3D } from "@/components/sections/CaptureKit3D";
 import { ReplayVideo } from "@/components/ui/ReplayVideo";
 import { container, sectionFrame } from "@/components/ui/SectionHeader";
 import { StatusBadge, type Status } from "@/components/ui/StatusBadge";
@@ -11,7 +12,7 @@ import { cn } from "@/lib/cn";
 
 const READOUT = ["episode", "excerpt", "camera", "glove", "usb"] as const;
 const STREAMS = ["rgbd", "tactile", "motion", "time", "task"] as const;
-const KIT = ["gloves", "wrist", "head", "audio"] as const;
+const KIT = ["gloves", "wrist", "head"] as const;
 
 function Feature({
   index,
@@ -59,32 +60,60 @@ export function ProductSections() {
       {/* Working today: the prototype and the software that replays it */}
       <section id="prototype" className={sectionFrame}>
         <div className={container}>
+          {/* One Collector panel: the recorded replay on top, the live pressure view below */}
           <figure>
-            <div className="relative overflow-hidden rounded-2xl border border-line">
-              <ReplayVideo video={heroVideo} label={hero("media.caption")} />
-              {/* The USB panel is a still in the recording; this lays a slowly drifting
-                  copy of the same still over it. Position = the panel inside the 1920×900 frame. */}
-              <div
-                aria-hidden
-                className="pointer-events-none absolute overflow-hidden"
-                style={{ left: "74.69%", top: "29.33%", width: "23.02%", height: "25.11%" }}
-              >
+            <div className="overflow-hidden rounded-2xl border border-line-strong bg-[#F7F7F8] shadow-[0_1px_2px_rgb(17_17_17/0.04),0_12px_32px_-8px_rgb(17_17_17/0.12)]">
+              <div className="relative [container-type:inline-size]">
+                <ReplayVideo video={heroVideo} label={hero("media.caption")} />
+                {/* The recording's title bar says "Prototype 1 Collector". This redraws the left
+                    half of that bar (mark, name and tabs) with the current name and even spacing.
+                    Sizes are in cqw so it scales with the video; 1cqw = 19.2px of the 1920px frame. */}
                 <div
-                  className="usb-drift size-full"
-                  style={{
-                    backgroundImage: `url(${heroVideo.poster})`,
-                    backgroundSize: "434.39% 398.23%",
-                    backgroundPosition: "97.02% 39.17%",
-                  }}
-                />
+                  aria-hidden
+                  className="pointer-events-none absolute flex items-center bg-white pl-[0.36cqw] font-sans leading-none"
+                  style={{ left: "1.5%", top: "0.4%", width: "50%", height: "8.4%" }}
+                >
+                  <span className="size-[1.67cqw] shrink-0 rounded-[0.42cqw] bg-[#171719]" />
+                  <span className="ml-[0.83cqw] text-[1.2cqw] font-semibold text-[#171719]">V1</span>
+                  <span className="ml-[0.35cqw] text-[1.2cqw] text-[rgba(55,56,60,0.61)]">Collector</span>
+                  <span className="ml-[2.6cqw] flex items-center gap-[0.9cqw] text-[1.12cqw] font-medium text-[rgba(55,56,60,0.61)]">
+                    {["Devices", "New session", "Live", "Sessions"].map((tab) => (
+                      <span key={tab} className="px-[0.85cqw]">
+                        {tab}
+                      </span>
+                    ))}
+                    <span className="rounded-[0.55cqw] bg-[#f4f4f5] px-[1.1cqw] py-[0.62cqw] font-semibold text-[#171719]">
+                      Review
+                    </span>
+                  </span>
+                </div>
+                {/* The USB panel is a still in the recording; this lays a slowly drifting
+                    copy of the same still over it. Position = the panel inside the 1920×900 frame. */}
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute overflow-hidden"
+                  style={{ left: "74.69%", top: "29.33%", width: "23.02%", height: "25.11%" }}
+                >
+                  <div
+                    className="usb-drift size-full"
+                    style={{
+                      backgroundImage: `url(${heroVideo.poster})`,
+                      backgroundSize: "434.39% 398.23%",
+                      backgroundPosition: "97.02% 39.17%",
+                    }}
+                  />
+                </div>
               </div>
+              <PressureDemo />
             </div>
-            <figcaption className="mt-4 grid gap-1 text-[14px] leading-5 sm:grid-cols-[auto_minmax(0,1fr)] sm:gap-6">
+            <figcaption className="mt-4 grid gap-x-6 gap-y-2 text-[14px] leading-5 sm:grid-cols-[auto_minmax(0,1fr)]">
               <span className="flex items-center gap-2 font-medium text-ink">
                 <span aria-hidden className="size-2 rounded-full bg-velox-orange" />
                 {hero("media.caption")}
               </span>
               <span className="text-ink-2">{hero("media.detail")}</span>
+              <span className="eyebrow">{p("pressure.hint")}</span>
+              <span className="font-mono text-[12px] leading-5 text-ink-3">{p("pressure.note")}</span>
             </figcaption>
           </figure>
 
@@ -117,87 +146,49 @@ export function ProductSections() {
               </dl>
             </div>
           </div>
+
         </div>
       </section>
 
-      {/* Whole-hand glove, in 3D */}
-      <section id="glove" className={sectionFrame}>
-        <div className={container}>
+      {/* Whole-hand glove: the closed hand opens, then its layers come apart */}
+      <GloveScrollStory
+        id="glove"
+        header={
           <Feature
             index="03"
             status="concept"
             title={t("wholeHandGlove.title")}
             body={t("wholeHandGlove.body")}
           />
-          <div className="mt-10 lg:mt-14">
-            <GloveLab
-              labels={{
-                viewLabel: p("lab.viewLabel"),
-                poseLabel: p("lab.poseLabel"),
-                views: { palm: p("lab.views.palm"), back: p("lab.views.back"), side: p("lab.views.side") },
-                poses: {
-                  relaxed: p("lab.poses.relaxed"),
-                  flat: p("lab.poses.flat"),
-                  grip: p("lab.poses.grip"),
-                },
-                hint: p("lab.hint"),
-                stackLabel: p("lab.stackLabel"),
-                assembled: p("lab.assembled"),
-                exploded: p("lab.exploded"),
-                layers: {
-                  pads: p("lab.layers.pads"),
-                  shell: p("lab.layers.shell"),
-                  inner: p("lab.layers.inner"),
-                  hub: p("lab.layers.hub"),
-                },
-                note: home("conceptNote"),
-                canvasLabel: home("canvasLabel"),
-              }}
-            />
-          </div>
-        </div>
-      </section>
+        }
+        labels={{
+          assembled: p("lab.assembled"),
+          exploded: p("lab.exploded"),
+          layers: {
+            pads: p("lab.layers.pads"),
+            shell: p("lab.layers.shell"),
+            inner: p("lab.layers.inner"),
+            hub: p("lab.layers.hub"),
+          },
+          note: home("conceptNote"),
+          canvasLabel: home("canvasLabel"),
+        }}
+      />
 
-      {/* Fingertip sensor, as layers */}
-      <section id="sensor" className={sectionFrame}>
-        <div className={container}>
+      {/* Fingertip sensor: a line drawing whose layers come apart on scroll. No detail on purpose. */}
+      <SensorScrollStory
+        id="sensor"
+        header={
           <Feature
             index="04"
             status="concept"
             title={t("fingertipShearSensor.title")}
             body={t("fingertipShearSensor.body")}
           />
-          <div className="mt-10 lg:mt-14">
-            <SensorLab
-              labels={{
-                modeLabel: p("sensor.modeLabel"),
-                stackLabel: p("sensor.stackLabel"),
-                modes: {
-                  normal: {
-                    label: p("sensor.modes.normal.label"),
-                    caption: p("sensor.modes.normal.caption"),
-                  },
-                  tangential: {
-                    label: p("sensor.modes.tangential.label"),
-                    caption: p("sensor.modes.tangential.caption"),
-                  },
-                },
-                exploded: p("sensor.exploded"),
-                assembled: p("sensor.assembled"),
-                layers: {
-                  shield: p("sensor.layers.shield"),
-                  top: p("sensor.layers.top"),
-                  pillars: p("sensor.layers.pillars"),
-                  bottom: p("sensor.layers.bottom"),
-                },
-                note: p("sensor.note"),
-                hint: p("sensor.hint"),
-                canvasLabel: p("sensor.canvasLabel"),
-              }}
-            />
-          </div>
-        </div>
-      </section>
+        }
+        note={p("sensor.note")}
+        canvasLabel={p("sensor.canvasLabel")}
+      />
 
       {/* Capture system */}
       <section id="system" className={sectionFrame}>
@@ -211,11 +202,9 @@ export function ProductSections() {
             />
           }
         >
-          <div className="rounded-2xl border border-line bg-paper-2 p-4 sm:p-8">
-            <CaptureKitDiagram label={p("kit.diagram")} />
-          </div>
+          <CaptureKit3D label={p("kit.diagram")} hint={p("sensor.hint")} />
           <p className="eyebrow mt-8">{p("kit.label")}</p>
-          <ul className="mt-3 grid border-t border-line sm:grid-cols-2 sm:gap-x-8">
+          <ul className="mt-3 border-t border-line">
             {KIT.map((key, i) => (
               <li key={key} className="grid grid-cols-[2.5rem_minmax(0,1fr)] border-b border-line py-4">
                 <span className="pt-1 font-mono text-[12px] leading-4 text-ink-3">

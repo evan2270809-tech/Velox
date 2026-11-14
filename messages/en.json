@@ -5,7 +5,7 @@
   },
   "nav": {
     "home": "Home",
-    "why": "Why this data",
+    "why": "Why tactile data",
     "product": "Product",
     "contact": "Contact us",
     "menu": "Menu",
@@ -23,7 +23,7 @@
   "hero": {
     "chip": "Prototype stage · November 2026",
     "headline": "High-quality data <accent>for robot learning</accent>",
-    "sub": "We're building a tactile glove and capture system that records how human hands press, grip and slip — together with video and hand motion.",
+    "sub": "VLAs see what hands do, not what they feel.\nWe provide the missing sense: tactile data.",
     "ctaPrimary": "Contact us",
     "ctaSecondary": "See what we're building",
     "media": {
@@ -40,7 +40,7 @@
       },
       "collectionSoftware": {
         "title": "Collection software",
-        "body": "Prototype 1 Collector checks devices, runs a capture and reviews each episode. It already replays our real recordings.",
+        "body": "V1 Collector checks devices, runs a capture and reviews each episode. It already replays our real recordings.",
         "readout": {
           "episode": {
             "label": "Episode",
@@ -74,7 +74,7 @@
       },
       "fingertipShearSensor": {
         "title": "Fingertip shear sensor",
-        "body": "A fingertip sensor designed to read both pressing force and sideways (shear) force — the signal behind slip."
+        "body": "We design our own fingertip sensor, built to sense both pressure and shear."
       },
       "dataFormat": {
         "title": "Data format",
@@ -181,8 +181,8 @@
     "cta": "Email us"
   },
   "footer": {
-    "company": "Velox · Hong Kong / Shenzhen",
-    "founded": "Founded by HKUST students",
+    "company": "Velox · Hong Kong / Republic of Korea",
+    "founded": "Founded by HKUST",
     "rights": "© 2026 Velox"
   },
   "notFound": {
@@ -190,8 +190,8 @@
     "back": "Back home"
   },
   "home": {
-    "headline1": "High-quality data",
-    "headline2": "for robot learning",
+    "headline1": "Giving Physical AI",
+    "headline2": "a sense of touch",
     "hint": "Move your cursor through the data",
     "conceptNote": "Concept model. Design targets only.",
     "canvasLabel": "3D concept model of the Velox whole-hand tactile glove",
@@ -214,7 +214,7 @@
       "why": {
         "title": "Why touch matters",
         "body": "Published studies show that adding touch helps robots learn contact-rich tasks.",
-        "cta": "Why this data"
+        "cta": "Why tactile data"
       },
       "product": {
         "title": "What we're building",
@@ -227,17 +227,12 @@
         "cta": "Contact us"
       }
     },
-    "tags": {
-      "glove": "Tactile glove",
-      "contact": "Contact",
-      "robot": "Robot hand"
-    },
     "heroNote": "Concept illustration. Design targets only.",
     "heroCanvasLabel": "3D concept illustration: a hand in the Velox tactile glove reaching towards a robot hand, with data flowing between the fingertips"
   },
   "why": {
-    "eyebrow": "Why this data",
-    "title": "Why you need this data",
+    "eyebrow": "Why tactile data",
+    "title": "The case for tactile data",
     "success": "Task success",
     "bars": {
       "matchLighting": {
@@ -259,57 +254,23 @@
     "title": "What we're building",
     "lead": "Velox builds tactile capture hardware and software to collect human hand data for robot learning.",
     "lab": {
-      "viewLabel": "View",
-      "poseLabel": "Pose",
-      "views": {
-        "palm": "Palm",
-        "back": "Back",
-        "side": "Side"
-      },
-      "poses": {
-        "relaxed": "Relaxed",
-        "flat": "Flat",
-        "grip": "Grip"
-      },
-      "hint": "Drag to rotate. Move over the pads to press them.",
-      "stackLabel": "Stack",
       "assembled": "Assembled",
       "exploded": "Exploded",
       "layers": {
         "pads": "Tactile pads",
         "shell": "Glove shell",
         "inner": "Flex tails and motion sensors",
-        "hub": "Hub"
+        "hub": "Processor"
       }
     },
     "sensor": {
-      "modeLabel": "Contact",
-      "stackLabel": "Stack",
-      "modes": {
-        "normal": {
-          "label": "Normal load",
-          "caption": "Compression changes capacitance"
-        },
-        "tangential": {
-          "label": "Tangential contact",
-          "caption": "Lateral motion changes overlap"
-        }
-      },
-      "exploded": "Exploded",
-      "assembled": "Assembled",
-      "layers": {
-        "shield": "Shield",
-        "top": "Top electrodes",
-        "pillars": "Soft pillar layer",
-        "bottom": "Bottom electrodes"
-      },
-      "note": "Design exploration in progress. Simplified illustration, not to scale.",
+      "note": "Simplified illustration, not to scale.",
       "hint": "Drag to rotate",
-      "canvasLabel": "3D illustration of the fingertip sensor concept, shown as separate layers"
+      "canvasLabel": "3D line drawing of the fingertip sensor, shown as separate layers"
     },
     "kit": {
       "label": "Capture kit",
-      "diagram": "Line drawing of the capture kit as worn: head camera, tactile gloves, wrist cameras and microphone",
+      "diagram": "3D line sketch of the capture kit as worn: head camera, tactile gloves and wrist cameras",
       "note": "Schematic, not to scale.",
       "items": {
         "gloves": {
@@ -318,17 +279,17 @@
         },
         "wrist": {
           "title": "Wrist cameras",
-          "body": "One under each hand."
+          "body": "One under each hand. Audio is planned to be recorded from these cameras."
         },
         "head": {
           "title": "Head camera",
           "body": "A Gemini 2 RGB-D camera worn on the head."
-        },
-        "audio": {
-          "title": "Audio",
-          "body": "Voice, recorded with the episode."
         }
       }
+    },
+    "pressure": {
+      "hint": "Press and hold a fingertip",
+      "note": "Interactive demo of the Collector view. Values are simulated, not recorded data."
     }
   },
   "contactPage": {

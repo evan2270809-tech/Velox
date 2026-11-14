@@ -14,30 +14,25 @@ export interface StoryChapter {
 }
 
 interface HomeStoryProps {
-  chip: string;
   headline: [string, string];
   sub: string;
   actions: ReactNode;
-  conceptNote: string;
-  hint: string;
   canvasLabel: string;
   chapters: [StoryChapter, StoryChapter, StoryChapter];
   streams: { label: string; live?: boolean }[];
-  /** Labels for the glove, the contact point and the robot hand. */
-  tags: [string, string, string];
   traceNote: string;
 }
 
 const BASE: GloveState = {
   x: 0, y: 0, ox: 0, oy: 0, rotX: 0, rotY: 0, rotZ: 0,
-  scale: 1, curl: 0.2, point: 0, sweep: 0, grip: 0, explode: 0,
+  scale: 1, curl: 0, point: 0, sweep: 0, grip: 0, explode: 0,
 };
 const pose = (p: Partial<GloveState>): GloveState => ({ ...BASE, ...p });
 
 type Stop = { glove: GloveState; robot: GloveState; flow: number };
 
 /** The robot hand waits off stage to the right once the story moves on. */
-const ROBOT_AWAY = pose({ ox: 46, y: -0.06, rotZ: 1.5, rotX: 0.3, curl: 0.3, point: 1 });
+const ROBOT_AWAY = pose({ ox: 52, y: -0.08, rotZ: 1.42, rotX: 0.18, rotY: -0.3, scale: 0.74 });
 
 /**
  * Poses at each stop of the scroll story: the two hands meeting, then the
@@ -47,27 +42,27 @@ const ROBOT_AWAY = pose({ ox: 46, y: -0.06, rotZ: 1.5, rotX: 0.3, curl: 0.3, poi
 const STOPS: { wide: Stop; narrow: Stop }[] = [
   {
     wide: {
-      glove: pose({ ox: -10.2, oy: -1.7, y: -0.1, rotZ: -1.42, rotX: 0.38, rotY: 0.12, scale: 0.88, curl: 0.34, point: 1, sweep: 0.25 }),
-      robot: pose({ ox: 10.2, oy: 0.5, y: -0.1, rotZ: 1.5, rotX: 0.3, rotY: -0.12, scale: 0.88, curl: 0.3, point: 1 }),
+      glove: pose({ ox: -8.6, oy: 0.4, y: -0.08, rotZ: -1.36, rotX: 0.12, rotY: 0.3, scale: 0.78 }),
+      robot: pose({ ox: 10.4, oy: -0.4, y: -0.08, rotZ: 1.42, rotX: 0.18, rotY: -0.3, scale: 0.74 }),
       flow: 1,
     },
     narrow: {
-      glove: pose({ ox: -7.6, oy: -1.4, y: 0.02, rotZ: -1.42, rotX: 0.38, rotY: 0.12, scale: 0.74, curl: 0.34, point: 1, sweep: 0.25 }),
-      robot: pose({ ox: 7.6, oy: 0.5, y: 0.02, rotZ: 1.5, rotX: 0.3, rotY: -0.12, scale: 0.74, curl: 0.3, point: 1 }),
+      glove: pose({ ox: -6.3, oy: 0.3, y: 0.02, rotZ: -1.36, rotX: 0.12, rotY: 0.3, scale: 0.6 }),
+      robot: pose({ ox: 7.7, oy: -0.3, y: 0.02, rotZ: 1.42, rotX: 0.18, rotY: -0.3, scale: 0.56 }),
       flow: 1,
     },
   },
   {
-    wide: { glove: pose({ x: -0.21, y: -0.02, rotX: -0.04, rotY: -0.22, scale: 1.04, curl: 0.02, sweep: 1 }), robot: ROBOT_AWAY, flow: 0 },
-    narrow: { glove: pose({ y: 0.13, rotX: -0.04, rotY: -0.2, scale: 0.72, curl: 0.02, sweep: 1 }), robot: ROBOT_AWAY, flow: 0 },
+    wide: { glove: pose({ x: -0.21, y: -0.02, rotX: -0.04, rotY: -0.22, scale: 1.04, sweep: 1 }), robot: ROBOT_AWAY, flow: 0 },
+    narrow: { glove: pose({ y: 0.13, rotX: -0.04, rotY: -0.2, scale: 0.72, sweep: 1 }), robot: ROBOT_AWAY, flow: 0 },
   },
   {
-    wide: { glove: pose({ x: 0.14, y: -0.52, rotX: 0.3, rotY: 0.62, scale: 2.3, curl: 0.16, sweep: 0.25 }), robot: ROBOT_AWAY, flow: 0 },
-    narrow: { glove: pose({ x: 0.16, y: -0.2, rotX: 0.3, rotY: 0.6, scale: 1.7, curl: 0.16, sweep: 0.25 }), robot: ROBOT_AWAY, flow: 0 },
+    wide: { glove: pose({ x: 0.14, y: -0.52, rotX: 0.3, rotY: 0.62, scale: 2.3, sweep: 0.25 }), robot: ROBOT_AWAY, flow: 0 },
+    narrow: { glove: pose({ x: 0.16, y: -0.2, rotX: 0.3, rotY: 0.6, scale: 1.7, sweep: 0.25 }), robot: ROBOT_AWAY, flow: 0 },
   },
   {
-    wide: { glove: pose({ x: -0.22, y: -0.02, rotX: 0.1, rotY: -0.85, scale: 0.98, curl: 0.62, grip: 1 }), robot: ROBOT_AWAY, flow: 0 },
-    narrow: { glove: pose({ y: 0.14, rotX: 0.1, rotY: -0.8, scale: 0.7, curl: 0.62, grip: 1 }), robot: ROBOT_AWAY, flow: 0 },
+    wide: { glove: pose({ x: -0.22, y: -0.02, rotX: 0.1, rotY: -1.75, scale: 0.98, curl: 0.4, grip: 1 }), robot: ROBOT_AWAY, flow: 0 },
+    narrow: { glove: pose({ y: 0.14, rotX: 0.1, rotY: -1.75, scale: 0.7, curl: 0.4, grip: 1 }), robot: ROBOT_AWAY, flow: 0 },
   },
 ];
 
@@ -75,16 +70,12 @@ const smooth = (t: number) => t * t * (3 - 2 * t);
 const clamp01 = (t: number) => Math.max(0, Math.min(1, t));
 
 export function HomeStory({
-  chip,
   headline,
   sub,
   actions,
-  conceptNote,
-  hint,
   canvasLabel,
   chapters,
   streams,
-  tags,
   traceNote,
 }: HomeStoryProps) {
   const sectionRef = useRef<HTMLElement>(null);
@@ -95,8 +86,6 @@ export function HomeStory({
   const railRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const traceRef = useRef<HTMLCanvasElement>(null);
   const traceOn = useRef(false);
-  const heroOpacity = useRef(1);
-  const tagRefs = useRef<(HTMLSpanElement | null)[]>([]);
 
   const update = useCallback(() => {
     const section = sectionRef.current;
@@ -129,7 +118,7 @@ export function HomeStory({
       el.inert = o < 0.5;
       return o;
     };
-    heroOpacity.current = show(heroRef.current, 0);
+    show(heroRef.current, 0);
     if (headlineRef.current) {
       const o = clamp01(1 - (pos - 0.12) / 0.3);
       headlineRef.current.style.opacity = String(o);
@@ -214,29 +203,6 @@ export function HomeStory({
     return () => cancelAnimationFrame(frame);
   }, []);
 
-  /* Annotation tags follow the hands, like labels on an annotated recording. */
-  useEffect(() => {
-    let frame = 0;
-    const keys = ["glove", "contact", "robot"] as const;
-    const place = () => {
-      frame = requestAnimationFrame(place);
-      const rig = rigRef.current;
-      const section = sectionRef.current;
-      if (!rig || !section) return;
-      const w = window.innerWidth;
-      const h = window.innerHeight;
-      keys.forEach((key, n) => {
-        const el = tagRefs.current[n];
-        if (!el) return;
-        const a = rig.anchors[key];
-        el.style.opacity = String(heroOpacity.current);
-        el.style.transform = `translate3d(${a.x * w}px, ${a.y * h}px, 0)`;
-      });
-    };
-    frame = requestAnimationFrame(place);
-    return () => cancelAnimationFrame(frame);
-  }, []);
-
   const onReady = useCallback(
     (rig: GloveRig) => {
       rigRef.current = rig;
@@ -264,42 +230,12 @@ export function HomeStory({
           <GloveCanvas onReady={onReady} initial={STOPS[0]!.wide.glove} robot mirrored label={canvasLabel} />
         </div>
 
-        {/* Annotation tags */}
-        <div aria-hidden className="pointer-events-none absolute inset-0 hidden sm:block">
-          {tags.map((tag, n) => (
-            <span
-              key={tag}
-              ref={(el) => {
-                tagRefs.current[n] = el;
-              }}
-              className="absolute left-0 top-0 will-change-transform"
-            >
-              <span
-                className={cn(
-                  "absolute flex -translate-x-1/2 items-center gap-1.5 whitespace-nowrap rounded-[4px] border px-1.5 py-1 font-mono text-[11px] leading-none",
-                  n === 1
-                    ? "-top-16 border-velox-orange/50 bg-velox-orange/15 text-accent-ink"
-                    : "top-12 border-line-strong bg-paper/80 text-ink-2 backdrop-blur-sm",
-                )}
-              >
-                <span className={cn("size-1.5 rounded-full", n === 1 ? "bg-velox-orange" : "bg-ink")} />
-                {tag}
-              </span>
-            </span>
-          ))}
-        </div>
-
         {/* Hero copy: centred below the two hands, between the forearms */}
         <div ref={heroRef} className="absolute inset-x-0 bottom-0 will-change-transform">
           <div className="relative mx-auto w-full max-w-[1440px] px-5 pb-8 sm:px-8 lg:px-10 lg:pb-10">
-            <div className="mx-auto max-w-[34rem] rounded-2xl bg-paper/90 p-4 text-center backdrop-blur-md lg:bg-transparent lg:p-0 lg:backdrop-blur-none">
-              <p className="eyebrow">{chip}</p>
-              <p className="mt-3 text-[16px] leading-6 text-ink-2 lg:text-[17px] lg:leading-7">{sub}</p>
+            <div className="mx-auto max-w-[26rem] rounded-2xl bg-paper/90 p-4 text-center backdrop-blur-md lg:bg-transparent lg:p-0 lg:backdrop-blur-none">
+              <p className="whitespace-pre-line text-[16px] leading-6 text-ink-2 lg:text-[17px] lg:leading-7">{sub}</p>
               <div className="mt-5 flex flex-wrap justify-center gap-2.5">{actions}</div>
-            </div>
-            <div className="absolute bottom-10 right-10 hidden text-right xl:block">
-              <p className="eyebrow">{hint}</p>
-              <p className="mt-1.5 font-mono text-[12px] leading-4 text-ink-3">{conceptNote}</p>
             </div>
           </div>
         </div>

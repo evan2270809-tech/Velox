@@ -12,6 +12,8 @@ interface GloveCanvasProps {
   robot?: boolean;
   /** Builds a left-hand glove instead of a right-hand one. */
   mirrored?: boolean;
+  /** Uses the scanned hand in its glove instead of the posable concept model. */
+  scan?: boolean;
   /**
    * "follow": the canvas ignores the pointer itself; the glove leans towards the
    * cursor anywhere on the page (used behind page content).
@@ -32,6 +34,7 @@ export function GloveCanvas({
   initial,
   robot = false,
   mirrored = false,
+  scan = false,
   interaction = "follow",
   label,
   className,
@@ -51,7 +54,7 @@ export function GloveCanvas({
     void import("./glove").then(({ GloveRig }) => {
       if (cancelled) return;
       try {
-        rig = new GloveRig(canvas, { robot, mirrored });
+        rig = new GloveRig(canvas, { robot, mirrored, scan });
       } catch {
         return; // No WebGL: the page still reads fine without the model.
       }
@@ -145,7 +148,7 @@ export function GloveCanvas({
       cleanups.forEach((fn) => fn());
       rig?.dispose();
     };
-  }, [interaction, robot, mirrored]);
+  }, [interaction, robot, mirrored, scan]);
 
   return (
     <canvas
